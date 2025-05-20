@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:bus_mob/data/models/bus_basic_info.dart';
-import 'package:bus_mob/data/models/bus_stop.dart';
 import 'package:bus_mob/data/models/bus_trip_map.dart';
 import 'package:flutter/material.dart';
 import 'package:gtfs_realtime_bindings/gtfs_realtime_bindings.dart';

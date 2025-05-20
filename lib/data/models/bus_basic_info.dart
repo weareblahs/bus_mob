@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class BusBasicInfo {
   String? licensePlate;
   double? speed = 0.0;
