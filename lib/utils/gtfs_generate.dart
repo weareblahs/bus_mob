@@ -17,7 +17,7 @@ Future<List<BusBasicInfo>> generateGtfs(String provider, String route) async {
     final pl = json
         .decode(providerList.body)
         .where((p) => p?['providerName'] == provider);
-    debugPrint(pl.toString());
+    debugPrint(pl);
     final url = Uri.parse(
       'https://api.data.gov.my/gtfs-realtime/vehicle-position/prasarana?category=rapid-bus-penang',
     );

@@ -24,12 +24,12 @@ class BusStop {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['stop_name'] = this.stopName;
-    data['stop_lat'] = this.stopLat;
-    data['stop_lon'] = this.stopLon;
-    data['stop_id'] = this.stopId;
-    data['stop_sequence'] = this.stopSequence;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['stop_name'] = stopName;
+    data['stop_lat'] = stopLat;
+    data['stop_lon'] = stopLon;
+    data['stop_id'] = stopId;
+    data['stop_sequence'] = stopSequence;
     return data;
   }
 }
