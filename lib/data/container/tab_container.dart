@@ -16,10 +16,6 @@ class _TabContainerState extends State<TabContainer> {
     );
   }
 
-  void _navigateToLake() {}
-
-  void _navigateToPosts() {}
-
   //drawer navigation
   @override
   Widget build(BuildContext context) {
