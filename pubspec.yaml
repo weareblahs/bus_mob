@@ -38,7 +38,7 @@ dependencies:
   gtfs_realtime_bindings: ^1.1.0
   http: ^1.4.0
   osm_nominatim: ^3.0.1
-
+  maps_launcher: ^3.0.0+1
 dev_dependencies:
   flutter_test:
     sdk: flutter

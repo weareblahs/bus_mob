@@ -20,20 +20,35 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _init() async {
-    final busInfo = await generateGtfs("rapidPenang", "101A");
+    final busInfo = await generateGtfs("rapidPenang", "801A");
     setState(() {
       info = busInfo;
     });
-    debugPrint(busInfo.toString());
+  }
+
+  Future<void> setRoute(String provider, String route) async {
+    final busInfo = await generateGtfs(provider, route);
+    setState(() {
+      info = busInfo;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ListView.builder(
-          itemCount: info.length,
-          itemBuilder: (context, index) => DataCard(busInfo: info[index]),
+    return RefreshIndicator(
+      onRefresh: () async {
+        final busInfo = await generateGtfs("rapidPenang", "801A");
+        setState(() {
+          info = busInfo;
+        });
+      },
+      child: Scaffold(
+        // swipe down to refresh route info
+        body: SafeArea(
+          child: ListView.builder(
+            itemCount: info.length,
+            itemBuilder: (context, index) => DataCard(busInfo: info[index]),
+          ),
         ),
       ),
     );

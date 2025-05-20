@@ -14,6 +14,10 @@ Future<List<BusBasicInfo>> generateGtfs(String provider, String route) async {
     ),
   );
   if (providerList.statusCode == 200) {
+    final pl = json
+        .decode(providerList.body)
+        .where((p) => p?['providerName'] == provider);
+    debugPrint(pl.toString());
     final url = Uri.parse(
       'https://api.data.gov.my/gtfs-realtime/vehicle-position/prasarana?category=rapid-bus-penang',
     );
@@ -50,6 +54,8 @@ Future<List<BusBasicInfo>> generateGtfs(String provider, String route) async {
               lat: bus.vehicle.position.latitude,
               lon: bus.vehicle.position.longitude,
               addressDetails: true,
+              extraTags: false,
+              nameDetails: false,
               language: 'ms',
             );
 
@@ -67,7 +73,6 @@ Future<List<BusBasicInfo>> generateGtfs(String provider, String route) async {
           }
         }
       }
-      debugPrint(finalResult.toString());
       return finalResult;
     } else {
       throw Exception('Request failed with status: ${response.statusCode}.');
