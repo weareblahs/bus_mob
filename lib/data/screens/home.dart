@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bus_mob/data/components/data_card.dart';
 import 'package:bus_mob/data/models/bus_basic_info.dart';
 import 'package:bus_mob/utils/gtfs_generate.dart';
@@ -20,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _init() async {
-    final busInfo = await generateGtfs("rapidPenang", "801A");
+    final busInfo = await generateGtfs("rapidPenang", "101A");
     setState(() {
       info = busInfo;
     });
@@ -37,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        final busInfo = await generateGtfs("rapidPenang", "801A");
+        final busInfo = await generateGtfs("rapidPenang", "101A");
         setState(() {
           info = busInfo;
         });

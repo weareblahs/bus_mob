@@ -1,7 +1,12 @@
 import 'package:bus_mob/data/navigation/navigation.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+
+  // initialize hive config box if not initialized
+  await Hive.openBox('busConfig');
   runApp(const MyApp());
 }
 

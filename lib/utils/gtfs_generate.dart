@@ -4,23 +4,29 @@ import 'package:bus_mob/data/models/bus_basic_info.dart';
 import 'package:bus_mob/data/models/bus_trip_map.dart';
 import 'package:flutter/material.dart';
 import 'package:gtfs_realtime_bindings/gtfs_realtime_bindings.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:http/http.dart' as http;
 import 'package:osm_nominatim/osm_nominatim.dart';
 
 Future<List<BusBasicInfo>> generateGtfs(String provider, String route) async {
+  debugPrint("running");
+  // this is a mirror of https://raw.githubusercontent.com/weareblahs/bus/refs/heads/main/app/src/internalData/providers.json
+  // hosted on uploadthing by ping labs (uploadthing.com). the host is changed due to how android emulators, sometimes, can't
+  // connect to the github version of the URL.
   final providerList = await http.get(
     Uri.parse(
-      'https://github.com/weareblahs/bus/raw/refs/heads/main/app/src/internalData/providers.json',
+      'https://i3y1zzl5dl.ufs.sh/f/Cm68qkvCYisct43FXOOL9Jy7QUzfvsLNY6lrXP85San2uoti',
     ),
   );
+  debugPrint(providerList.statusCode.toString());
   if (providerList.statusCode == 200) {
     // final pl = json
     //     .decode(providerList.body)
     //     .where((p) => p?['providerName'] == provider);
     // debugPrint(pl.toString());
-    final url = Uri.parse(
-      'https://api.data.gov.my/gtfs-realtime/vehicle-position/prasarana?category=rapid-bus-penang',
-    );
+    // get provider URL
+    final config = Hive.box('busConfig');
+    final url = Uri.parse(config.get("providerEndpointURL"));
     final response = await http.get(url);
     // get from trip id
     // QUICK NOTE: the following URL is already static. for the original React instance, this file is compiled
