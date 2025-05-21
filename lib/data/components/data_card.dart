@@ -10,7 +10,7 @@ class DataCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.fromLTRB(12, 4, 12, 4),
       child: Card(
         child: Column(
           children: [
@@ -46,18 +46,31 @@ class DataCard extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
+              child: Column(
+                children: [
+                  Text(busInfo.busStations!.previousStation!),
+                  Text(
+                    busInfo.busStations!.currentStation!,
+                    style: TextStyle(fontSize: 35),
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(busInfo.busStations!.nextStation!),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Row(
                 children: [
                   Expanded(
                     flex: 7,
-                    child: Text("near ${busInfo.currentParsedLocation}"),
+                    child: Text(busInfo.currentParsedLocation!),
                   ),
                   Expanded(flex: 1, child: Spacer()),
                   Expanded(
                     flex: 2,
                     child: ElevatedButton(
                       onPressed: () {
-                        debugPrint("button pressed");
                         MapsLauncher.launchCoordinates(
                           busInfo.latitude!,
                           busInfo.longitude!,

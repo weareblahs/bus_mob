@@ -23,10 +23,10 @@ class _TabContainerState extends State<TabContainer> {
       length: 2,
       child: Scaffold(
         body: const TabBarView(children: [HomeScreen(), Placeholder()]),
-
         bottomNavigationBar: TabBar(
+          labelPadding: EdgeInsets.all(16),
           indicatorColor: Colors.transparent,
-          labelColor: Colors.black,
+          labelColor: Colors.white,
           unselectedLabelColor: Colors.blueGrey,
           tabs: [
             _tabBarItem("Bus status", Icons.bus_alert),

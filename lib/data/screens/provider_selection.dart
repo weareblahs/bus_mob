@@ -22,7 +22,6 @@ class _ProviderSelectionScreenState extends State<ProviderSelectionScreen> {
 
   void _init() async {
     final providers = await getProviders();
-    debugPrint(providers.toString());
     setState(() {
       listOfProviders = providers;
     });
@@ -45,9 +44,7 @@ class _ProviderSelectionScreenState extends State<ProviderSelectionScreen> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20.0),
             ),
-            SizedBox(
-              width: double.infinity,
-              height: 800.0,
+            Expanded(
               child: SafeArea(
                 child: ListView.builder(
                   itemCount: listOfProviders.length,

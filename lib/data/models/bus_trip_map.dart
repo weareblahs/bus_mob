@@ -8,7 +8,6 @@ class BusTripMap {
 
   BusTripMap.fromJson(dynamic json) {
     providerName = json['providerName'];
-    debugPrint(providerName);
     if (json['trips'] != null) {
       trips = <Trips>[];
       json['trips'].forEach((v) {
@@ -18,10 +17,10 @@ class BusTripMap {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['providerName'] = this.providerName;
-    if (this.trips != null) {
-      data['trips'] = this.trips!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['providerName'] = providerName;
+    if (trips != null) {
+      data['trips'] = trips!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -39,9 +38,9 @@ class Trips {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
     return data;
   }
 

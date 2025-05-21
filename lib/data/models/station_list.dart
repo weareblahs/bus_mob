@@ -15,4 +15,9 @@ class StationList {
     data['name'] = name;
     return data;
   }
+
+  @override
+  String toString() {
+    return "($id) $name";
+  }
 }
