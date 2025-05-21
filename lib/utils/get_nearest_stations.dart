@@ -15,7 +15,7 @@ Future<BusStations> getNearestStations(
   var provider = config.get("provider");
 
   final stationList = await http.get(
-    Uri.parse("https://b.ntyx.dev/data/stnInfo/${provider}_${route}.json"),
+    Uri.parse("https://b.ntyx.dev/data/stnInfo/${provider}_$route.json"),
   );
   List<BusStop> stops = [];
   final busStopJson = json.decode(stationList.body);

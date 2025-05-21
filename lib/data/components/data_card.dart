@@ -47,15 +47,18 @@ class DataCard extends StatelessWidget {
             Padding(
               padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Column(
-                children: [
-                  Text(busInfo.busStations!.previousStation!),
-                  Text(
-                    busInfo.busStations!.currentStation!,
-                    style: TextStyle(fontSize: 35),
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(busInfo.busStations!.nextStation!),
-                ],
+                children:
+                    (busInfo.busStations!.currentStation! != "Unknown station")
+                        ? [
+                          Text(busInfo.busStations!.previousStation!),
+                          Text(
+                            busInfo.busStations!.currentStation!,
+                            style: TextStyle(fontSize: 35),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(busInfo.busStations!.nextStation!),
+                        ]
+                        : [],
               ),
             ),
             Padding(
