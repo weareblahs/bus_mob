@@ -31,31 +31,37 @@ class _ProviderSelectionScreenState extends State<ProviderSelectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.fromLTRB(0, 12, 0, 12),
-        child: Column(
-          children: [
-            Text(
-              "Welcome to bus?",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 32.0),
-            ),
-            Text(
-              "To start, select a bus provider below.",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16.0),
-            ),
-            Expanded(
-              child: SafeArea(
-                child: ListView.builder(
-                  itemCount: listOfProviders.length,
-                  itemBuilder:
-                      (context, index) => ProviderSelectionButton(
-                        providerInfo: listOfProviders[index],
-                      ),
+        padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(0, 36, 0, 36),
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Text(
+                  "Welcome to bus?",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 32.0),
                 ),
-              ),
+                Text(
+                  "To start, select a bus provider below.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16.0),
+                ),
+                Expanded(
+                  child: SafeArea(
+                    child: ListView.builder(
+                      itemCount: listOfProviders.length,
+                      itemBuilder:
+                          (context, index) => ProviderSelectionButton(
+                            providerInfo: listOfProviders[index],
+                          ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
