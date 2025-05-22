@@ -47,10 +47,21 @@ Future<BusStations> getNearestStations(
             previousBusStop = BusStop(stopName: "First station");
           } else {
             previousBusStop =
-                stops[int.parse(nearbyBusStop[0].stopSequence!) - 2];
+                stops[int.parse(nearbyBusStop[0].stopSequence!) - 1];
           }
           currentBusStop = nearbyBusStop[0];
           nextBusStop = BusStop(stopName: "Unknown station");
+        }
+      case 2:
+        {
+          if (nearbyBusStop[0].stopSequence! == "1") {
+            previousBusStop = BusStop(stopName: "First station");
+          } else {
+            previousBusStop =
+                stops[int.parse(nearbyBusStop[0].stopSequence!) - 1];
+          }
+          currentBusStop = nearbyBusStop[1];
+          nextBusStop = stops[int.parse(nearbyBusStop[1].stopSequence!)];
         }
       default:
         {
@@ -58,10 +69,10 @@ Future<BusStations> getNearestStations(
             previousBusStop = BusStop(stopName: "First station");
           } else {
             previousBusStop =
-                stops[int.parse(nearbyBusStop[0].stopSequence!) - 2];
+                stops[int.parse(nearbyBusStop[0].stopSequence!) - 1];
           }
-          currentBusStop = nearbyBusStop[0];
-          nextBusStop = nearbyBusStop[1];
+          currentBusStop = nearbyBusStop[1];
+          nextBusStop = nearbyBusStop[2];
         }
     }
   }

@@ -37,12 +37,12 @@ class _ProviderSelectionScreenState extends State<ProviderSelectionScreen> {
             Text(
               "Welcome to bus?",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 40.0),
+              style: TextStyle(fontSize: 32.0),
             ),
             Text(
               "To start, select a bus provider below.",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(fontSize: 16.0),
             ),
             Expanded(
               child: SafeArea(

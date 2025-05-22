@@ -12,7 +12,7 @@ class TabContainer extends StatefulWidget {
 class _TabContainerState extends State<TabContainer> {
   Widget _tabBarItem(String title, IconData icon) {
     return SizedBox(
-      height: 50,
+      height: 48,
       child: Column(children: [Icon(icon), Text(title)]),
     );
   }
@@ -27,7 +27,7 @@ class _TabContainerState extends State<TabContainer> {
           children: [HomeScreen(), RoadLandingScreen(), Placeholder()],
         ),
         bottomNavigationBar: TabBar(
-          labelPadding: EdgeInsets.all(16),
+          labelPadding: EdgeInsets.all(8),
           indicatorColor: Colors.transparent,
           labelColor: Colors.white,
           unselectedLabelColor: Colors.blueGrey,

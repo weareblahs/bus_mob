@@ -2,6 +2,7 @@ import 'package:bus_mob/data/models/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:restart_app/restart_app.dart';
 
 class ProviderSelectionButton extends StatefulWidget {
   const ProviderSelectionButton({super.key, required this.providerInfo});
@@ -18,7 +19,7 @@ class _ProviderSelectionButtonState extends State<ProviderSelectionButton> {
     final config = Hive.box('busConfig');
     config.put("provider", provider);
     config.put("providerEndpointURL", providerURL);
-    context.pushNamed("home");
+    Restart.restartApp();
   }
 
   @override
@@ -34,7 +35,7 @@ class _ProviderSelectionButtonState extends State<ProviderSelectionButton> {
                   (BuildContext context) => AlertDialog(
                     title: const Text('Confirm selection'),
                     content: Text(
-                      "You selected ${widget.providerInfo.providerName}. When you press OK, it will show ${widget.providerInfo.providerName} buses by default when you start the app. You can change it at the Settings tab. Do you want to continue?",
+                      "You selected ${widget.providerInfo.providerName}. When you press Yes, it will show ${widget.providerInfo.providerName} buses by default when you start the app. You can change it at the Settings tab. The app will restart. Do you want to continue?",
                     ),
                     actions: <Widget>[
                       TextButton(

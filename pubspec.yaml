@@ -46,6 +46,7 @@ dependencies:
   flutter_hooks: ^0.21.2
   osrm: ^0.0.8
   fluttertoast: ^8.2.12
+  restart_app: ^1.3.2
 
 dev_dependencies:
   flutter_test:
