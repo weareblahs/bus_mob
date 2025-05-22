@@ -9,11 +9,15 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:http/http.dart' as http;
 import 'package:osm_nominatim/osm_nominatim.dart';
 
-Future<List<BusBasicInfo>> generateGtfs(String provider, String route) async {
+Future<List<BusBasicInfo>> generateGtfs(
+  String provider,
+  String route,
+  Function updateMsg,
+) async {
   // this is a mirror of https://raw.githubusercontent.com/weareblahs/bus/refs/heads/main/app/src/internalData/providers.json
   // hosted on uploadthing by ping labs (uploadthing.com). the host is changed due to how android emulators, sometimes, can't
   // connect to the github version of the URL.
-
+  updateMsg("Searching for buses...");
   final providerList = await http.get(
     Uri.parse(
       'https://i3y1zzl5dl.ufs.sh/f/Cm68qkvCYisct43FXOOL9Jy7QUzfvsLNY6lrXP85San2uoti',
@@ -42,6 +46,8 @@ Future<List<BusBasicInfo>> generateGtfs(String provider, String route) async {
           }
         }
       }
+    } else {
+      updateMsg("An error occured. Status code: ${tripData.statusCode}");
     }
 
     final foundTripsForRoute = trips.where((t) => t.name == route);
@@ -86,11 +92,9 @@ Future<List<BusBasicInfo>> generateGtfs(String provider, String route) async {
               ),
             );
 
-            config.put(
-              "tempMsgData",
+            updateMsg(
               "Found ${finalResult.length.toString()} bus${finalResult.length > 1 ? "es" : ""} in this route",
             );
-            debugPrint(config.get("tempMsgData").toString());
           }
         }
       }

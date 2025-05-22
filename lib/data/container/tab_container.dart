@@ -1,4 +1,5 @@
 import 'package:bus_mob/data/screens/home.dart';
+import 'package:bus_mob/data/screens/road_landing_screen.dart';
 import 'package:flutter/material.dart';
 
 class TabContainer extends StatefulWidget {
@@ -20,9 +21,11 @@ class _TabContainerState extends State<TabContainer> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
-        body: const TabBarView(children: [HomeScreen(), Placeholder()]),
+        body: const TabBarView(
+          children: [HomeScreen(), RoadLandingScreen(), Placeholder()],
+        ),
         bottomNavigationBar: TabBar(
           labelPadding: EdgeInsets.all(16),
           indicatorColor: Colors.transparent,
@@ -30,6 +33,7 @@ class _TabContainerState extends State<TabContainer> {
           unselectedLabelColor: Colors.blueGrey,
           tabs: [
             _tabBarItem("Bus status", Icons.bus_alert),
+            _tabBarItem("Road status", Icons.report),
             _tabBarItem("Settings", Icons.settings),
           ],
         ),

@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final busInfo = await generateGtfs(
       config.get("provider"),
       config.get("route"),
+      _updateMsg,
     );
     setState(() {
       info = busInfo;
@@ -50,6 +51,12 @@ class _HomeScreenState extends State<HomeScreen> {
       isLoading = false;
     });
     return true;
+  }
+
+  void _updateMsg(String message) {
+    setState(() {
+      msg = message;
+    });
   }
 
   Future<bool> _refresh() async {
@@ -68,15 +75,18 @@ class _HomeScreenState extends State<HomeScreen> {
     return _refreshScript();
   }
 
-  void _startReloadTimer() {
+  void _startReloadTimer() async {
     timer = Timer.periodic(Duration(seconds: 1), (timer) async {
       final time = DateTime.now().second;
       if (time == 30 || time == 0) {
-        const snackBar = SnackBar(
-          content: Text('Possible new data found! Refreshing...'),
-        );
-        ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        await _reload();
+        if (!isLoading) {
+          const snackBar = SnackBar(
+            content: Text('Possible new data found! Refreshing...'),
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          await _reload();
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        }
       }
     });
   }
@@ -90,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final busInfo = await generateGtfs(
       config.get("provider"),
       config.get("route"),
+      _updateMsg,
     );
     setState(() {
       info = busInfo;
@@ -98,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> setRoute(String provider, String route) async {
-    final busInfo = await generateGtfs(provider, route);
+    final busInfo = await generateGtfs(provider, route, _updateMsg);
     setState(() {
       info = busInfo;
     });
@@ -146,7 +157,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             if (isLoading)
-              Expanded(child: Center(child: CircularProgressIndicator())),
+              Expanded(
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(),
+                      Padding(padding: EdgeInsets.all(4.0), child: Text(msg)),
+                    ],
+                  ),
+                ),
+              ),
             if (!isLoading)
               Expanded(
                 child: SafeArea(
