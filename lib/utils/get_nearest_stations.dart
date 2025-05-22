@@ -44,13 +44,13 @@ Future<BusStations> getNearestStations(
     if (int.parse(nearbyBusStop[0].stopSequence!) > 0) {
       if (stops[int.parse(nearbyBusStop[0].stopSequence!) - 1].stopSequence! !=
           "1") {
-        previousBusStop = stops[int.parse(nearbyBusStop[0].stopSequence!) - 2];
+        previousBusStop = stops[int.parse(nearbyBusStop[1].stopSequence!) - 2];
       }
     }
     if (nearbyBusStop.length != 1) {
-      nextBusStop = nearbyBusStop[1];
+      nextBusStop = nearbyBusStop[2];
     }
-    currentBusStop = nearbyBusStop[0];
+    currentBusStop = nearbyBusStop[1];
   }
 
   print(
