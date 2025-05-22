@@ -45,6 +45,7 @@ dependencies:
   hive_flutter: ^1.1.0
   flutter_hooks: ^0.21.2
   osrm: ^0.0.8
+  fluttertoast: ^8.2.12
 
 dev_dependencies:
   flutter_test:
