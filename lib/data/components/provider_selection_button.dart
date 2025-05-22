@@ -1,4 +1,5 @@
 import 'package:bus_mob/data/models/providers.dart';
+import 'package:bus_mob/utils/download_provider_to_local_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -19,7 +20,8 @@ class _ProviderSelectionButtonState extends State<ProviderSelectionButton> {
     final config = Hive.box('busConfig');
     config.put("provider", provider);
     config.put("providerEndpointURL", providerURL);
-    Restart.restartApp();
+    downloadProvider();
+    context.pushNamed("home");
   }
 
   @override

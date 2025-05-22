@@ -61,7 +61,7 @@ Future<BusStations> getNearestStations(
                 stops[int.parse(nearbyBusStop[0].stopSequence!) - 1];
           }
           currentBusStop = nearbyBusStop[1];
-          nextBusStop = stops[int.parse(nearbyBusStop[1].stopSequence!)];
+          nextBusStop = stops[int.parse(nearbyBusStop[1].stopSequence!) - 1];
         }
       default:
         {

@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:bus_mob/data/models/bus_basic_info.dart';
 import 'package:bus_mob/data/models/bus_trip_map.dart';
 import 'package:bus_mob/utils/get_nearest_stations.dart';
-import 'package:flutter/material.dart';
 import 'package:gtfs_realtime_bindings/gtfs_realtime_bindings.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:http/http.dart' as http;
