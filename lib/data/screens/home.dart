@@ -21,7 +21,9 @@ class _HomeScreenState extends State<HomeScreen> {
   List<DropdownMenuEntry> providers = [];
   var config = Hive.box("busConfig");
   String msg = "";
-
+  bool isLoading = false;
+  bool isRefresh = false;
+  Timer? timer;
   @override
   void initState() {
     _init();
@@ -36,14 +38,62 @@ class _HomeScreenState extends State<HomeScreen> {
     _continue();
   }
 
-  void _continue() async {
-    providers = dropdownProviders();
+  Future<bool> _refreshScript() async {
     final busInfo = await generateGtfs(
       config.get("provider"),
       config.get("route"),
     );
     setState(() {
       info = busInfo;
+    });
+    setState(() {
+      isLoading = false;
+    });
+    return true;
+  }
+
+  Future<bool> _refresh() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    return _refreshScript();
+  }
+
+  Future<bool> _reload() async {
+    setState(() {
+      isLoading = false;
+    });
+
+    return _refreshScript();
+  }
+
+  void _startReloadTimer() {
+    timer = Timer.periodic(Duration(seconds: 1), (timer) async {
+      final time = DateTime.now().second;
+      if (time == 30 || time == 0) {
+        const snackBar = SnackBar(
+          content: Text('Possible new data found! Refreshing...'),
+        );
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        await _reload();
+      }
+    });
+  }
+
+  void _continue() async {
+    setState(() {
+      providers = dropdownProviders();
+      isLoading = true;
+    });
+    _startReloadTimer();
+    final busInfo = await generateGtfs(
+      config.get("provider"),
+      config.get("route"),
+    );
+    setState(() {
+      info = busInfo;
+      isLoading = false;
     });
   }
 
@@ -57,43 +107,48 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () async {
-        final busInfo = await generateGtfs(
-          config.get("provider"),
-          config.get("route"),
-        );
-        setState(() {
-          info = busInfo;
-        });
-      },
+      onRefresh: _reload,
       child: Scaffold(
         // swipe down to refresh route info
         body: Column(
           children: [
             Padding(
               padding: EdgeInsets.fromLTRB(16, 40, 16, 0),
-              child: DropdownMenu(
-                dropdownMenuEntries: providers,
-                onSelected: (value) async {
-                  config.put("route", value);
-                  info = [];
-                  final busInfo = await generateGtfs(
-                    config.get("provider"),
-                    config.get("route"),
-                  );
-                  setState(() {
-                    info = busInfo;
-                  });
-                },
+              child: Column(
+                children: [
+                  if (providers.isNotEmpty)
+                    DropdownMenu(
+                      dropdownMenuEntries: providers,
+                      initialSelection: config.get("route"),
+                      onSelected: (value) async {
+                        config.put("route", value);
+                        _refresh();
+                      },
+                    ),
+                ],
               ),
             ),
-            Visibility(
-              visible: msg != "",
-              child: Expanded(child: Text("${config.get("tempMsgData")}")),
-            ),
-            Visibility(
-              visible: msg == "",
-              child: Expanded(
+            if (info.isEmpty && !isLoading)
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
+                      "Realtime data unavailable.",
+                      style: TextStyle(fontSize: 32),
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(
+                      "Please select another route and try again.",
+                      style: TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            if (isLoading)
+              Expanded(child: Center(child: CircularProgressIndicator())),
+            if (!isLoading)
+              Expanded(
                 child: SafeArea(
                   child: ListView.builder(
                     itemCount: info.length,
@@ -102,7 +157,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-            ),
           ],
         ),
       ),

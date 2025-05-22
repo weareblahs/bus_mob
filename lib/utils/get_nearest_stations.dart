@@ -4,7 +4,6 @@ import 'package:bus_mob/data/models/bus_stop.dart';
 import 'package:bus_mob/utils/distance.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:osrm/osrm.dart';
 
 Future<BusStations> getNearestStations(
   double lat,
@@ -41,16 +40,30 @@ Future<BusStations> getNearestStations(
   // previous station
 
   if (nearbyBusStop.isNotEmpty) {
-    if (int.parse(nearbyBusStop[0].stopSequence!) > 0) {
-      if (stops[int.parse(nearbyBusStop[0].stopSequence!) - 1].stopSequence! !=
-          "1") {
-        previousBusStop = stops[int.parse(nearbyBusStop[1].stopSequence!) - 2];
-      }
+    switch (nearbyBusStop.length) {
+      case 1:
+        {
+          if (nearbyBusStop[0].stopSequence! == "1") {
+            previousBusStop = BusStop(stopName: "First station");
+          } else {
+            previousBusStop =
+                stops[int.parse(nearbyBusStop[0].stopSequence!) - 2];
+          }
+          currentBusStop = nearbyBusStop[0];
+          nextBusStop = BusStop(stopName: "Unknown station");
+        }
+      default:
+        {
+          if (nearbyBusStop[0].stopSequence! == "1") {
+            previousBusStop = BusStop(stopName: "First station");
+          } else {
+            previousBusStop =
+                stops[int.parse(nearbyBusStop[0].stopSequence!) - 2];
+          }
+          currentBusStop = nearbyBusStop[0];
+          nextBusStop = nearbyBusStop[1];
+        }
     }
-    if (nearbyBusStop.length != 1) {
-      nextBusStop = nearbyBusStop[2];
-    }
-    currentBusStop = nearbyBusStop[1];
   }
 
   print(
