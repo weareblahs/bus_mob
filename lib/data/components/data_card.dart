@@ -51,14 +51,27 @@ class DataCard extends StatelessWidget {
                     (busInfo.busStations!.currentStation! != "Unknown station")
                         ? [
                           Text(busInfo.busStations!.previousStation!),
-                          ColoredBox(
-                            color: Colors.blueAccent,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                busInfo.busStations!.currentStation!,
-                                style: TextStyle(fontSize: 35, height: 1.2),
-                                textAlign: TextAlign.center,
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 6, 0, 6),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.blueAccent,
+                              ),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text(
+                                      busInfo.busStations!.currentStation!,
+                                      style: TextStyle(
+                                        fontSize: 35,
+                                        height: 1.2,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
