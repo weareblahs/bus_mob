@@ -3,7 +3,6 @@ import 'package:bus_mob/utils/download_provider_to_local_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:restart_app/restart_app.dart';
 
 class ProviderSelectionButton extends StatefulWidget {
   const ProviderSelectionButton({super.key, required this.providerInfo});

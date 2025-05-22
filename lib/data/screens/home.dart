@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(16, 40, 16, 0),
+              padding: EdgeInsets.fromLTRB(32, 64, 32, 0),
               child: Column(
                 children: [
                   if (providers.isNotEmpty)
@@ -143,19 +143,22 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             if (info.isEmpty && !isLoading)
               Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      "Realtime data unavailable.",
-                      style: TextStyle(fontSize: 32),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      "Please select another route and try again.",
-                      style: TextStyle(fontSize: 16),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        "Realtime data unavailable.",
+                        style: TextStyle(fontSize: 32),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        "Please select another route and try again.",
+                        style: TextStyle(fontSize: 16),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             if (isLoading)
@@ -173,10 +176,14 @@ class _HomeScreenState extends State<HomeScreen> {
             if (!isLoading)
               Expanded(
                 child: SafeArea(
-                  child: ListView.builder(
-                    itemCount: info.length,
-                    itemBuilder:
-                        (context, index) => DataCard(busInfo: info[index]),
+                  top: false,
+                  maintainBottomViewPadding: false,
+                  child: Expanded(
+                    child: ListView.builder(
+                      itemCount: info.length,
+                      itemBuilder:
+                          (context, index) => DataCard(busInfo: info[index]),
+                    ),
                   ),
                 ),
               ),
