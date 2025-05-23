@@ -15,6 +15,5 @@ void downloadProvider() async {
     config.put('providerRoutes', providerData.body);
     // initialize - set to the first one when app loaded
     config.put("route", json.decode(providerData.body)[0]['id']);
-    debugPrint(config.get("route"));
   }
 }

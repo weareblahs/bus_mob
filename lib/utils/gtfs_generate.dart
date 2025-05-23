@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bus_mob/data/models/bus_basic_info.dart';
 import 'package:bus_mob/data/models/bus_trip_map.dart';
 import 'package:bus_mob/utils/get_nearest_stations.dart';
+import 'package:bus_mob/utils/variables.dart';
 import 'package:gtfs_realtime_bindings/gtfs_realtime_bindings.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:http/http.dart' as http;
@@ -16,7 +17,7 @@ Future<List<BusBasicInfo>> generateGtfs(
   // this is a mirror of https://raw.githubusercontent.com/weareblahs/bus/refs/heads/main/app/src/internalData/providers.json
   // hosted on uploadthing by ping labs (uploadthing.com). the host is changed due to how android emulators, sometimes, can't
   // connect to the github version of the URL.
-  updateMsg("Searching for buses...");
+  updateMsg(busSearchStart);
   final providerList = await http.get(
     Uri.parse(
       'https://i3y1zzl5dl.ufs.sh/f/Cm68qkvCYisct43FXOOL9Jy7QUzfvsLNY6lrXP85San2uoti',
@@ -73,7 +74,6 @@ Future<List<BusBasicInfo>> generateGtfs(
               cpl =
                   "Failed to retrieve location. Do note that location can still be viewed via Google Maps with the button at the right.";
             }
-            //debugPrint(bus.vehicle.vehicle.licensePlate);
             // get nearest station
             var nearest = await getNearestStations(
               bus.vehicle.position.latitude,
@@ -91,9 +91,7 @@ Future<List<BusBasicInfo>> generateGtfs(
               ),
             );
 
-            updateMsg(
-              "Found ${finalResult.length.toString()} bus${finalResult.length > 1 ? "es" : ""} in this route",
-            );
+            updateMsg(busUpdated(finalResult.length));
           }
         }
       }
@@ -102,8 +100,10 @@ Future<List<BusBasicInfo>> generateGtfs(
       finalResult.sort((a, b) => a.licensePlate!.compareTo(b.licensePlate!));
       return finalResult;
     } else {
-      if (response.statusCode == 429) {
-        updateMsg(json.decode(response.body)['detail']);
+      if (response.statusCode != 200) {
+        updateMsg(
+          json.decode(response.body)['detail'],
+        ); // assuming if it is using data.gov.my API then the detail text should be here
       }
       throw Exception('Request failed with status: ${response.statusCode}.');
     }

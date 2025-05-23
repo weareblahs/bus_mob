@@ -65,7 +65,6 @@ Future<BusStations> getNearestStations(
         }
       case 3:
         {
-          print(nearbyBusStop);
           if (nearbyBusStop[0].stopSequence! == "1") {
             previousBusStop = BusStop(stopName: "First station");
           } else {
@@ -76,7 +75,6 @@ Future<BusStations> getNearestStations(
         }
       default:
         {
-          print(nearbyBusStop);
           if (nearbyBusStop[0].stopSequence! == "1") {
             previousBusStop = BusStop(stopName: "First station");
           } else {
