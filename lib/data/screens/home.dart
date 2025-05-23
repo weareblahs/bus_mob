@@ -122,71 +122,53 @@ class _HomeScreenState extends State<HomeScreen> {
     return RefreshIndicator(
       onRefresh: _reload,
       child: Scaffold(
-        // swipe down to refresh route info
-        body: Column(
+        body: ListView(
+          padding: const EdgeInsets.fromLTRB(0, 32, 0, 32),
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(32, 64, 32, 0),
-              child: Column(
-                children: [
-                  if (providers.isNotEmpty)
-                    DropdownMenu(
-                      dropdownMenuEntries: providers,
-                      initialSelection: config.get("route"),
-                      onSelected: (value) async {
-                        config.put("route", value);
-                        _refresh();
-                      },
-                    ),
+            if (providers.isNotEmpty)
+              Padding(
+                padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                child: DropdownMenu(
+                  dropdownMenuEntries: providers,
+                  initialSelection: config.get("route"),
+                  onSelected: (value) async {
+                    config.put("route", value);
+                    _reload();
+                  },
+                ),
+              ),
+            const SizedBox(height: 16),
+            if (info.isEmpty && !isLoading)
+              Column(
+                children: const [
+                  Text(
+                    "Realtime data unavailable.",
+                    style: TextStyle(fontSize: 32),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    "Please select another route and try again.",
+                    style: TextStyle(fontSize: 16),
+                    textAlign: TextAlign.center,
+                  ),
                 ],
               ),
-            ),
-            if (info.isEmpty && !isLoading)
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Realtime data unavailable.",
-                        style: TextStyle(fontSize: 32),
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        "Please select another route and try again.",
-                        style: TextStyle(fontSize: 16),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
             if (isLoading)
-              Expanded(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(),
-                      Padding(padding: EdgeInsets.all(4.0), child: Text(msg)),
-                    ],
-                  ),
-                ),
-              ),
-            if (!isLoading)
-              Expanded(
-                child: SafeArea(
-                  top: false,
-                  maintainBottomViewPadding: false,
-                  child: Expanded(
-                    child: ListView.builder(
-                      itemCount: info.length,
-                      itemBuilder:
-                          (context, index) => DataCard(busInfo: info[index]),
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const CircularProgressIndicator(),
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Text(msg),
                     ),
-                  ),
+                  ],
                 ),
               ),
+            if (!isLoading && info.isNotEmpty)
+              ...info.map((item) => DataCard(busInfo: item)),
           ],
         ),
       ),

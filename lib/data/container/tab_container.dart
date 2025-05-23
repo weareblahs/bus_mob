@@ -1,4 +1,4 @@
-import 'package:bus_mob/data/about/about_page.dart';
+import 'package:bus_mob/data/about/settings_page.dart';
 import 'package:bus_mob/data/screens/home.dart';
 import 'package:bus_mob/data/screens/road_landing_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class _TabContainerState extends State<TabContainer> {
       length: 3,
       child: Scaffold(
         body: const TabBarView(
-          children: [HomeScreen(), RoadLandingScreen(), AboutPage()],
+          children: [HomeScreen(), RoadLandingScreen(), SettingsPage()],
         ),
         bottomNavigationBar: TabBar(
           labelPadding: EdgeInsets.all(8),
