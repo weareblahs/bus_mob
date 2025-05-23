@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bus_mob/data/models/bus_basic_info.dart';
 import 'package:bus_mob/data/models/bus_trip_map.dart';
 import 'package:bus_mob/utils/get_nearest_stations.dart';
+import 'package:bus_mob/utils/osrm.dart';
 import 'package:bus_mob/utils/variables.dart';
 import 'package:gtfs_realtime_bindings/gtfs_realtime_bindings.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -14,6 +15,7 @@ Future<List<BusBasicInfo>> generateGtfs(
   String route,
   Function updateMsg,
 ) async {
+  getOsrmInfo();
   // this is a mirror of https://raw.githubusercontent.com/weareblahs/bus/refs/heads/main/app/src/internalData/providers.json
   // hosted on uploadthing by ping labs (uploadthing.com). the host is changed due to how android emulators, sometimes, can't
   // connect to the github version of the URL.
