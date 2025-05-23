@@ -9,7 +9,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.fromLTRB(12, 24, 12, 24),
+        padding: EdgeInsets.fromLTRB(20, 32, 20, 32),
         child: SingleChildScrollView(
           child: Column(
             children: [

@@ -49,17 +49,27 @@ class _ProviderSelectionScreenState extends State<ProviderSelectionScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0),
                 ),
-                Expanded(
-                  child: SafeArea(
-                    child: ListView.builder(
-                      itemCount: listOfProviders.length,
-                      itemBuilder:
-                          (context, index) => ProviderSelectionButton(
-                            providerInfo: listOfProviders[index],
-                          ),
+                if (listOfProviders.isEmpty)
+                  Expanded(
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [CircularProgressIndicator()],
+                      ),
                     ),
                   ),
-                ),
+                if (listOfProviders.isNotEmpty)
+                  Expanded(
+                    child: SafeArea(
+                      child: ListView.builder(
+                        itemCount: listOfProviders.length,
+                        itemBuilder:
+                            (context, index) => ProviderSelectionButton(
+                              providerInfo: listOfProviders[index],
+                            ),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),
