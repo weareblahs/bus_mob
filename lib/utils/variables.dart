@@ -1,4 +1,6 @@
 // update message for buses
+import 'package:osm_nominatim/osm_nominatim.dart';
+
 const String busSearchStart = "Searching for buses...";
 String busUpdated(int count) {
   return "Found ${count.toString()} bus${count > 1 ? "es" : ""} in this route";
@@ -47,3 +49,7 @@ const String dataUnavailableHeader = "Realtime data unavailable.";
 const String dataUnavailableText = "Please select another route and try again.";
 const String osmErrorMsg =
     "Failed to retrieve location. Do note that location can still be viewed via any navigation app with the button at the right.";
+
+String osmMessage(Place reverseSearchResult) {
+  return "near ${(reverseSearchResult.address?['road'] != null) ? "${reverseSearchResult.address?['road']}, " : ""}${(reverseSearchResult.address?['suburb'] != null) ? "${reverseSearchResult.address?['suburb']}, " : ""}${(reverseSearchResult.address?['city'] != null) ? "${reverseSearchResult.address?['city']}" : ""}";
+}

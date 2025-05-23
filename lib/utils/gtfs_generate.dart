@@ -68,8 +68,7 @@ Future<List<BusBasicInfo>> generateGtfs(
                 nameDetails: false,
                 language: 'ms',
               );
-              cpl =
-                  "near ${(reverseSearchResult.address?['road'] != null) ? "${reverseSearchResult.address?['road']}, " : ""}${(reverseSearchResult.address?['suburb'] != null) ? "${reverseSearchResult.address?['suburb']}, " : ""}${(reverseSearchResult.address?['city'] != null) ? "${reverseSearchResult.address?['city']}" : ""}";
+              cpl = osmMessage(reverseSearchResult);
             } catch (e) {
               cpl = osmErrorMsg;
             }
