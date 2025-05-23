@@ -71,8 +71,7 @@ Future<List<BusBasicInfo>> generateGtfs(
               cpl =
                   "near ${(reverseSearchResult.address?['road'] != null) ? "${reverseSearchResult.address?['road']}, " : ""}${(reverseSearchResult.address?['suburb'] != null) ? "${reverseSearchResult.address?['suburb']}, " : ""}${(reverseSearchResult.address?['city'] != null) ? "${reverseSearchResult.address?['city']}" : ""}";
             } catch (e) {
-              cpl =
-                  "Failed to retrieve location. Do note that location can still be viewed via Google Maps with the button at the right.";
+              cpl = osmErrorMsg;
             }
             // get nearest station
             var nearest = await getNearestStations(

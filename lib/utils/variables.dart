@@ -45,3 +45,5 @@ String selected(String providerName) {
 const String dataRefreshSnackbar = "Possible new data found! Refreshing...";
 const String dataUnavailableHeader = "Realtime data unavailable.";
 const String dataUnavailableText = "Please select another route and try again.";
+const String osmErrorMsg =
+    "Failed to retrieve location. Do note that location can still be viewed via any navigation app with the button at the right.";
