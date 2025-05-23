@@ -103,7 +103,7 @@ Future<List<BusBasicInfo>> generateGtfs(
       return finalResult;
     } else {
       if (response.statusCode == 429) {
-        updateMsg("Please retry after several seconds.");
+        updateMsg(json.decode(response.body)['detail']);
       }
       throw Exception('Request failed with status: ${response.statusCode}.');
     }

@@ -33,7 +33,7 @@ Future<BusStations> getNearestStations(
           double.parse(s.stopLon!),
           "K",
         ) <=
-        0.5) {
+        0.8) {
       nearbyBusStop.add(s);
     }
   }
@@ -63,16 +63,27 @@ Future<BusStations> getNearestStations(
           currentBusStop = nearbyBusStop[1];
           nextBusStop = stops[int.parse(nearbyBusStop[1].stopSequence!) - 1];
         }
-      default:
+      case 3:
         {
+          print(nearbyBusStop);
           if (nearbyBusStop[0].stopSequence! == "1") {
             previousBusStop = BusStop(stopName: "First station");
           } else {
-            previousBusStop =
-                stops[int.parse(nearbyBusStop[0].stopSequence!) - 1];
+            previousBusStop = nearbyBusStop[0];
           }
           currentBusStop = nearbyBusStop[1];
           nextBusStop = nearbyBusStop[2];
+        }
+      default:
+        {
+          print(nearbyBusStop);
+          if (nearbyBusStop[0].stopSequence! == "1") {
+            previousBusStop = BusStop(stopName: "First station");
+          } else {
+            previousBusStop = nearbyBusStop[1];
+          }
+          currentBusStop = nearbyBusStop[2];
+          nextBusStop = nearbyBusStop[3];
         }
     }
   }
