@@ -1,3 +1,5 @@
+import 'package:bus_mob/data/about/setting_item/about_app.dart';
+import 'package:bus_mob/data/about/setting_item/reset.dart';
 import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 
@@ -8,34 +10,15 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(24),
-        child: Column(
-          children: [
-            // settings
-            Card(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [],
-              ),
-            ),
-            // license
-            Text(licenseText, textAlign: TextAlign.start),
-            Center(
-              child: ElevatedButton(
-                child: Text('Show Licenses'),
-                onPressed:
-                    () => showDialog(
-                      context: context,
-                      builder:
-                          (BuildContext context) => AboutDialog(
-                            applicationLegalese: legalText,
-                            applicationName: 'bus?',
-                            applicationVersion: '1.0',
-                          ),
-                    ),
-              ),
-            ),
-          ],
+        padding: EdgeInsets.fromLTRB(12, 24, 12, 24),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ResetAppSettings(),
+              AboutApp(),
+              // license
+            ],
+          ),
         ),
       ),
     );

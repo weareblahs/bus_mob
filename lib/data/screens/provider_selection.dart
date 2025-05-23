@@ -1,6 +1,7 @@
 import 'package:bus_mob/data/components/provider_selection_button.dart';
 import 'package:bus_mob/data/models/providers.dart';
 import 'package:bus_mob/utils/provider_selection.dart';
+import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 
 class ProviderSelectionScreen extends StatefulWidget {
@@ -39,12 +40,12 @@ class _ProviderSelectionScreenState extends State<ProviderSelectionScreen> {
             child: Column(
               children: [
                 Text(
-                  "Welcome to bus?",
+                  welcome,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 32.0),
                 ),
                 Text(
-                  "To start, select a bus provider below.",
+                  landingWelcomeMsg,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0),
                 ),

@@ -1,5 +1,6 @@
 import 'package:bus_mob/data/models/providers.dart';
 import 'package:bus_mob/utils/download_provider_to_local_storage.dart';
+import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -34,15 +35,13 @@ class _ProviderSelectionButtonState extends State<ProviderSelectionButton> {
               context: context,
               builder:
                   (BuildContext context) => AlertDialog(
-                    title: const Text('Confirm selection'),
-                    content: Text(
-                      "You selected ${widget.providerInfo.providerName}. When you press Yes, it will show ${widget.providerInfo.providerName} buses by default when you start the app. You can change it at the Settings tab. The app will restart. Do you want to continue?",
-                    ),
+                    title: const Text(confirm),
+                    content: Text(selected(widget.providerInfo.providerName!)),
                     actions: <Widget>[
                       TextButton(
                         onPressed:
                             () => Navigator.pop(context, 'selection_declined'),
-                        child: const Text('No'),
+                        child: const Text(no),
                       ),
                       TextButton(
                         onPressed:
@@ -50,7 +49,7 @@ class _ProviderSelectionButtonState extends State<ProviderSelectionButton> {
                               widget.providerInfo.providerName!,
                               widget.providerInfo.endpoint!,
                             ),
-                        child: const Text('Yes'),
+                        child: const Text(yes),
                       ),
                     ],
                   ),

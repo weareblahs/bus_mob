@@ -5,6 +5,7 @@ import 'package:bus_mob/data/models/bus_basic_info.dart';
 import 'package:bus_mob/utils/convert_providers.dart';
 import 'package:bus_mob/utils/download_provider_to_local_storage.dart';
 import 'package:bus_mob/utils/gtfs_generate.dart';
+import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:restart_app/restart_app.dart';
@@ -82,12 +83,9 @@ class _HomeScreenState extends State<HomeScreen> {
       final time = DateTime.now().second;
       if (time == 30 || time == 0) {
         if (!isLoading) {
-          const snackBar = SnackBar(
-            content: Text('Possible new data found! Refreshing...'),
-          );
+          const snackBar = SnackBar(content: Text(dataRefreshSnackbar));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           await _reload();
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
         }
       }
     });
@@ -148,12 +146,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       Text(
-                        "Realtime data unavailable.",
+                        dataUnavailableHeader,
                         style: TextStyle(fontSize: 32),
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        "Please select another route and try again.",
+                        dataUnavailableText,
                         style: TextStyle(fontSize: 16),
                         textAlign: TextAlign.center,
                       ),
@@ -168,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CircularProgressIndicator(),
-                      Padding(padding: EdgeInsets.all(4.0), child: Text(msg)),
+                      Padding(padding: EdgeInsets.all(12.0), child: Text(msg)),
                     ],
                   ),
                 ),

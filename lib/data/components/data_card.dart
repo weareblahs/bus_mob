@@ -10,7 +10,7 @@ class DataCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(12, 4, 12, 4),
+      padding: EdgeInsets.fromLTRB(12, 0, 12, 4),
       child: Card(
         child: Column(
           children: [
