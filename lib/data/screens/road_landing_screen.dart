@@ -10,6 +10,13 @@ class RoadLandingScreen extends StatefulWidget {
 class _RoadLandingScreenState extends State<RoadLandingScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      body: Column(
+        children: [
+          Expanded(child: Placeholder()),
+          Expanded(child: Placeholder()),
+        ],
+      ),
+    );
   }
 }

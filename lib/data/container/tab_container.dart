@@ -1,4 +1,4 @@
-import 'package:bus_mob/data/about/settings_page.dart';
+import 'package:bus_mob/data/settings/settings_page.dart';
 import 'package:bus_mob/data/screens/home.dart';
 import 'package:bus_mob/data/screens/road_landing_screen.dart';
 import 'package:flutter/material.dart';

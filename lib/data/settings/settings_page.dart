@@ -1,5 +1,5 @@
-import 'package:bus_mob/data/about/setting_item/about_app.dart';
-import 'package:bus_mob/data/about/setting_item/reset.dart';
+import 'package:bus_mob/data/settings/setting_item/about_app.dart';
+import 'package:bus_mob/data/settings/setting_item/reset.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
