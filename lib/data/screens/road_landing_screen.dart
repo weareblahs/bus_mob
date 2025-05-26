@@ -1,6 +1,10 @@
+import 'package:bus_mob/data/components/info_card.dart';
+import 'package:bus_mob/data/models/information.dart';
+import 'package:bus_mob/data/repo/repo.dart';
 import 'package:bus_mob/data/road_status_screens/add_info_landing.dart';
 import 'package:bus_mob/data/road_status_screens/login.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class RoadLandingScreen extends StatefulWidget {
@@ -12,6 +16,29 @@ class RoadLandingScreen extends StatefulWidget {
 
 class _RoadLandingScreenState extends State<RoadLandingScreen> {
   final supabase = Supabase.instance.client;
+  List<Information> data = [];
+  @override
+  void initState() {
+    _init();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  void _init() async {
+    final res = await getInfoList();
+    setState(() {
+      data = res;
+    });
+    print(data.length);
+  }
+
+  void _redirect() async {
+    final res = await context.pushNamed("selectRoute");
+    print(res);
+    if (res == null) {
+      _init();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +56,18 @@ class _RoadLandingScreenState extends State<RoadLandingScreen> {
                 if (session == null) {
                   return const LoginSection();
                 } else {
-                  return const AddInfoSection();
+                  return AddInfoSection(redirect: _redirect);
                 }
               },
             ),
           ),
-          const Expanded(flex: 7, child: Placeholder()),
+          Expanded(
+            flex: 7,
+            child: ListView.builder(
+              itemCount: data.length,
+              itemBuilder: (context, index) => InfoCard(info: data[index]),
+            ),
+          ),
         ],
       ),
     );

@@ -4,8 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AddInfoSection extends StatefulWidget {
-  const AddInfoSection({super.key});
-
+  const AddInfoSection({super.key, required this.redirect});
+  final dynamic redirect;
   @override
   State<AddInfoSection> createState() => _AddInfoSectionState();
 }
@@ -32,9 +32,7 @@ class _AddInfoSectionState extends State<AddInfoSection> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                    context.pushNamed("selectRoute");
-                  },
+                  onPressed: widget.redirect,
                   child: Text("Submit info"),
                 ),
                 SizedBox(width: 20),

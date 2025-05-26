@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(32, 48, 32, 0),
+              padding: EdgeInsets.fromLTRB(24, 32, 24, 0),
               child: Column(
                 children: [
                   if (providers.isNotEmpty)
@@ -178,6 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   maintainBottomViewPadding: false,
                   child: Expanded(
                     child: ListView.builder(
+                      padding: EdgeInsets.fromLTRB(6, 16, 6, 16),
                       itemCount: info.length,
                       itemBuilder:
                           (context, index) => DataCard(busInfo: info[index]),

@@ -3,6 +3,7 @@ import 'package:bus_mob/data/models/selection.dart';
 import 'package:bus_mob/utils/convert_providers.dart';
 import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 
 class SelectRouteScreen extends StatefulWidget {
   const SelectRouteScreen({super.key});
@@ -22,15 +23,33 @@ class _SelectRouteScreenState extends State<SelectRouteScreen> {
     super.initState();
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: ListView.builder(
-          itemCount: routes.length,
-          itemBuilder:
-              (context, index) => SelectionItem(selection: routes[index]),
+        padding: EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [Text(selectARoute, style: TextStyle(fontSize: 28))],
+              ),
+            ),
+            Expanded(
+              flex: 9,
+              child: ListView.builder(
+                padding: EdgeInsets.all(0),
+                itemCount: routes.length,
+                itemBuilder:
+                    (context, index) => SelectionItem(selection: routes[index]),
+              ),
+            ),
+          ],
         ),
       ),
     );

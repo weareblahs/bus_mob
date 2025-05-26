@@ -35,6 +35,7 @@ const String yes = "Yes";
 const String no = "No";
 const String confirm = "Confirm Selection";
 const String cancel = "Cancel";
+const String confirmBtn = "Confirm";
 
 // landing screen
 const String welcome = "Welcome to bus?";
@@ -68,3 +69,5 @@ const String signInWithGoogle = "Sign in with Google";
 
 // submit information wizard
 const String selectARoute = "Select a route";
+const String confirmRouteSelectionMessage =
+    "Please confirm if the selected route is correct.";

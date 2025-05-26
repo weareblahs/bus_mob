@@ -40,3 +40,15 @@ List<Selection> selectionCardRoutes() {
   }
   return providers;
 }
+
+String getRouteName(String route) {
+  var config = Hive.box("busConfig");
+  var providersUnformatted = config.get("providerRoutes");
+  var decodedProviders = json.decode(providersUnformatted);
+  for (final p in decodedProviders) {
+    if (p['id'] == route) {
+      return p['name'];
+    }
+  }
+  return "";
+}
