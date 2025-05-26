@@ -65,3 +65,6 @@ const String roadStatusText =
 
 const String signInPreText = "Want to submit information?";
 const String signInWithGoogle = "Sign in with Google";
+
+// submit information wizard
+const String selectARoute = "Select a route";

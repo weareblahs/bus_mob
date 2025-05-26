@@ -1,5 +1,6 @@
 import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AddInfoSection extends StatefulWidget {
@@ -32,7 +33,7 @@ class _AddInfoSectionState extends State<AddInfoSection> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    print("Add button");
+                    context.pushNamed("selectRoute");
                   },
                   child: Text("Submit info"),
                 ),
