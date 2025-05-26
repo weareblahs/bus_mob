@@ -13,7 +13,6 @@ void main() async {
   );
   // initialize hive config box if not initialized
   await Hive.openBox('busConfig');
-  final supabase = Supabase.instance.client;
   runApp(const MyApp());
 }
 

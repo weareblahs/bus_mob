@@ -1,3 +1,4 @@
+import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -17,11 +18,30 @@ class _AddInfoSectionState extends State<AddInfoSection> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const Text("Add info"),
-          ElevatedButton(onPressed: _signOut, child: const Text("Log out")),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(roadStatusText, textAlign: TextAlign.center),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    print("Add button");
+                  },
+                  child: Text("Submit info"),
+                ),
+                SizedBox(width: 20),
+                ElevatedButton(onPressed: _signOut, child: Text("Sign out")),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

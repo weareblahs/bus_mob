@@ -15,16 +15,7 @@ class _LoginSectionState extends State<LoginSection> {
   final supabase = Supabase.instance.client;
   @override
   void initState() {
-    _setupAuthListener();
     super.initState();
-  }
-
-  void _setupAuthListener() {
-    supabase.auth.onAuthStateChange.listen((data) {
-      if (data.event == AuthChangeEvent.signedIn) {
-        print(supabase.auth.currentUser?.id);
-      }
-    });
   }
 
   Future<AuthResponse> _googleSignIn() async {
@@ -58,6 +49,7 @@ class _LoginSectionState extends State<LoginSection> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(roadStatusText, textAlign: TextAlign.center),
+            SizedBox(height: 20),
             Text(
               signInPreText,
               textAlign: TextAlign.center,

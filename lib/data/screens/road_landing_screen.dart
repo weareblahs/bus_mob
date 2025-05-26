@@ -19,6 +19,7 @@ class _RoadLandingScreenState extends State<RoadLandingScreen> {
       body: Column(
         children: [
           Expanded(
+            flex: 3,
             child: StreamBuilder<AuthState>(
               stream: supabase.auth.onAuthStateChange,
               builder: (context, snapshot) {
@@ -33,7 +34,7 @@ class _RoadLandingScreenState extends State<RoadLandingScreen> {
               },
             ),
           ),
-          const Expanded(child: Placeholder()),
+          const Expanded(flex: 7, child: Placeholder()),
         ],
       ),
     );
