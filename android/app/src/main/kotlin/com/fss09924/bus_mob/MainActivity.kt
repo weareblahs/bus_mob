@@ -1,4 +1,4 @@
-package com.example.bus_mob
+package com.fss09924.bus_mob
 
 import io.flutter.embedding.android.FlutterActivity
 

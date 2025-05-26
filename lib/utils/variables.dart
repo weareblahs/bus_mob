@@ -53,3 +53,15 @@ const String osmErrorMsg =
 String osmMessage(Place reverseSearchResult) {
   return "near ${(reverseSearchResult.address?['road'] != null) ? "${reverseSearchResult.address?['road']}, " : ""}${(reverseSearchResult.address?['suburb'] != null) ? "${reverseSearchResult.address?['suburb']}, " : ""}${(reverseSearchResult.address?['city'] != null) ? "${reverseSearchResult.address?['city']}" : ""}";
 }
+
+// tabs (global)
+const String busStatus = "Bus status";
+const String roadStatus = "Road status";
+const String settings = "Settings";
+
+// road status
+const String roadStatusText =
+    "This is a page for commuters to submit traffic information, so that other commuters can expect if there is any delays on the arrival of a bus.";
+
+const String signInPreText = "Want to submit information?";
+const String signInWithGoogle = "Sign in with Google";

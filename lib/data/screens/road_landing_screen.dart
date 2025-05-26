@@ -1,3 +1,4 @@
+import 'package:bus_mob/data/components/road_status_screens/login.dart';
 import 'package:flutter/material.dart';
 
 class RoadLandingScreen extends StatefulWidget {
@@ -13,7 +14,7 @@ class _RoadLandingScreenState extends State<RoadLandingScreen> {
     return const Scaffold(
       body: Column(
         children: [
-          Expanded(child: Placeholder()),
+          Expanded(child: LoginSection()),
           Expanded(child: Placeholder()),
         ],
       ),

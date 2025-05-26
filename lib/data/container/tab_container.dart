@@ -1,6 +1,7 @@
 import 'package:bus_mob/data/settings/settings_page.dart';
 import 'package:bus_mob/data/screens/home.dart';
 import 'package:bus_mob/data/screens/road_landing_screen.dart';
+import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 
 class TabContainer extends StatefulWidget {
@@ -33,9 +34,9 @@ class _TabContainerState extends State<TabContainer> {
           labelColor: Colors.white,
           unselectedLabelColor: Colors.blueGrey,
           tabs: [
-            _tabBarItem("Bus status", Icons.bus_alert),
-            _tabBarItem("Road status", Icons.report),
-            _tabBarItem("Settings", Icons.settings),
+            _tabBarItem(busStatus, Icons.bus_alert),
+            _tabBarItem(roadStatus, Icons.report),
+            _tabBarItem(settings, Icons.settings),
           ],
         ),
       ),
