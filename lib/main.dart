@@ -2,12 +2,18 @@ import 'package:bus_mob/data/navigation/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await dotenv.load(fileName: ".env");
+  await dotenv.load();
+  await Supabase.initialize(
+    url: dotenv.env['SUPABASE_PROJECT_URL']!,
+    anonKey: dotenv.env['ANON_KEY']!,
+  );
   // initialize hive config box if not initialized
   await Hive.openBox('busConfig');
+  final supabase = Supabase.instance.client;
   runApp(const MyApp());
 }
 
