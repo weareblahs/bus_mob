@@ -5,6 +5,7 @@ class BusBasicInfo {
   double? longitude;
   String? currentParsedLocation = "Unknown location";
   BusStations? busStations = BusStations();
+  String? trafficInfo = "";
 
   BusBasicInfo({
     required this.licensePlate,
@@ -13,11 +14,12 @@ class BusBasicInfo {
     required this.longitude,
     this.currentParsedLocation,
     this.busStations,
+    this.trafficInfo,
   });
 
   @override
   String toString() {
-    return "BusBasicInfo: $licensePlate, $speed, $latitude, $longitude, $currentParsedLocation, $busStations";
+    return "BusBasicInfo: $licensePlate, $speed, $latitude, $longitude, $currentParsedLocation, $busStations, $trafficInfo";
   }
 }
 
@@ -27,6 +29,7 @@ class BusStations {
   String? nextStation = "Unknown Station";
   double? distanceToCurrent = -1;
   double? timeRemaining = -1;
+  int? currentStationSequence = -1;
 
   BusStations({
     this.previousStation,
@@ -34,10 +37,11 @@ class BusStations {
     this.nextStation,
     this.distanceToCurrent,
     this.timeRemaining,
+    this.currentStationSequence,
   });
 
   @override
   String toString() {
-    return "BusStations($previousStation, $currentStation, $nextStation, $distanceToCurrent, $timeRemaining)";
+    return "BusStations($previousStation, $currentStation, $nextStation, $distanceToCurrent, $timeRemaining, $currentStationSequence)";
   }
 }

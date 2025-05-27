@@ -49,11 +49,11 @@ class _LoginSectionState extends State<LoginSection> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(roadStatusText, textAlign: TextAlign.center),
-            SizedBox(height: 20),
+            SizedBox(height: 6),
             Text(
               signInPreText,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 22),
+              style: TextStyle(fontSize: 18),
             ),
             ElevatedButton.icon(
               onPressed: _googleSignIn,

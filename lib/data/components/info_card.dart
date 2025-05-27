@@ -1,9 +1,11 @@
 import 'package:bus_mob/data/models/information.dart';
+import 'package:bus_mob/data/repo/repo.dart';
 import 'package:bus_mob/utils/convert_providers.dart';
 import 'package:bus_mob/utils/get_provider_stations.dart';
 import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:need_resume/need_resume.dart';
 import 'package:slideable/slideable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -65,7 +67,14 @@ class _InfoCardState extends ResumableState<InfoCard> {
                 onPressed: () => Navigator.pop(context, 'selection_declined'),
                 child: const Text(cancel),
               ),
-              TextButton(onPressed: () {}, child: const Text(delete)),
+              TextButton(
+                onPressed: () {
+                  deleteInfo(widget.info);
+                  Navigator.pop(context, 'item_deleted');
+                  Hive.box("busConfig").put("dataChanged", true);
+                },
+                child: const Text(delete),
+              ),
             ],
           ),
     );
@@ -96,7 +105,7 @@ class _InfoCardState extends ResumableState<InfoCard> {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
+                          padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           child: Text(widget.info.routeId!),
                         ),
                       ),
@@ -124,7 +133,7 @@ class _InfoCardState extends ResumableState<InfoCard> {
                                   flex: 8,
                                   child: Text(
                                     br[0],
-                                    style: TextStyle(fontSize: 20),
+                                    style: TextStyle(fontSize: 18),
                                   ),
                                 ),
                               ],
@@ -139,7 +148,7 @@ class _InfoCardState extends ResumableState<InfoCard> {
                                   flex: 8,
                                   child: Text(
                                     br[br.length - 1],
-                                    style: TextStyle(fontSize: 20),
+                                    style: TextStyle(fontSize: 18),
                                   ),
                                 ),
                               ],
@@ -148,7 +157,7 @@ class _InfoCardState extends ResumableState<InfoCard> {
                         ),
                       ),
                       Expanded(
-                        flex: 2,
+                        flex: 4,
                         child: Column(
                           children: [
                             SvgPicture.asset(assetDir),

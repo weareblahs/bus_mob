@@ -99,5 +99,9 @@ Future<BusStations> getNearestStations(
         nextBusStop != BusStop()
             ? nextBusStop.stopName ?? "Last station"
             : "Unknown station",
+    currentStationSequence:
+        currentBusStop.stopSequence != null
+            ? int.parse(currentBusStop.stopSequence!)
+            : -1,
   );
 }

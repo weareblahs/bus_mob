@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:bus_mob/data/models/bus_basic_info.dart';
 import 'package:bus_mob/data/models/bus_trip_map.dart';
 import 'package:bus_mob/utils/get_nearest_stations.dart';
+import 'package:bus_mob/utils/get_traffic_info.dart';
 import 'package:bus_mob/utils/osrm.dart';
 import 'package:bus_mob/utils/variables.dart';
 import 'package:gtfs_realtime_bindings/gtfs_realtime_bindings.dart';
@@ -80,6 +81,13 @@ Future<List<BusBasicInfo>> generateGtfs(
               bus.vehicle.position.longitude,
               route,
             );
+            String? trafficText;
+            if (nearest.currentStationSequence != null) {
+              trafficText = await getTrafficInfoText(
+                nearest.currentStationSequence!,
+                route,
+              );
+            }
             finalResult.add(
               BusBasicInfo(
                 licensePlate: bus.vehicle.vehicle.licensePlate,
@@ -88,6 +96,7 @@ Future<List<BusBasicInfo>> generateGtfs(
                 speed: bus.vehicle.position.speed,
                 currentParsedLocation: cpl,
                 busStations: nearest,
+                trafficInfo: trafficText,
               ),
             );
 

@@ -80,6 +80,21 @@ class DataCard extends StatelessWidget {
                         : [],
               ),
             ),
+            if (busInfo.trafficInfo != null)
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
+                child: Container(
+                  color: Colors.orange,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(16, 4, 16, 4),
+                    child: Text(
+                      busInfo.trafficInfo!,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ),
+              ),
             Padding(
               padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Row(

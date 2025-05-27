@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:uuid/uuid.dart';
+import 'package:uuid/v4.dart';
 
 class ConfirmSelectionScreen extends StatefulWidget {
   const ConfirmSelectionScreen({super.key});
@@ -37,6 +39,7 @@ class _ConfirmSelectionScreenState extends State<ConfirmSelectionScreen> {
   }
 
   void _submit() async {
+    var uuid = Uuid();
     submitInfo(
       Information(
         routeId: config.get("tempStoreRoute"),
@@ -44,6 +47,7 @@ class _ConfirmSelectionScreenState extends State<ConfirmSelectionScreen> {
         toSeqNo: config.get("tempToStation"),
         infoType: config.get("tempType"),
         userId: supabase.auth.currentUser!.id,
+        uuid: uuid.v4(),
       ),
     );
     config.delete("tempStoreRoute");
@@ -51,6 +55,8 @@ class _ConfirmSelectionScreenState extends State<ConfirmSelectionScreen> {
     config.delete("tempToStation");
     config.delete("tempType");
     context.pop('add');
+    config.put("dataChanged", true);
+    config.put("dataChanged", false);
     config.put("dataChanged", true);
     const snackBar = SnackBar(content: Text(addDataSuccess));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
