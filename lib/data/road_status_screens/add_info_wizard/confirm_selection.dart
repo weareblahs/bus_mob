@@ -2,6 +2,7 @@ import 'package:bus_mob/data/models/information.dart';
 import 'package:bus_mob/data/repo/repo.dart';
 import 'package:bus_mob/utils/convert_providers.dart';
 import 'package:bus_mob/utils/get_provider_stations.dart';
+import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -51,7 +52,7 @@ class _ConfirmSelectionScreenState extends State<ConfirmSelectionScreen> {
     config.delete("tempType");
     context.pop('add');
     config.put("dataChanged", true);
-    const snackBar = SnackBar(content: Text("Data addition successful"));
+    const snackBar = SnackBar(content: Text(addDataSuccess));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
@@ -68,7 +69,7 @@ class _ConfirmSelectionScreenState extends State<ConfirmSelectionScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Confirm submission", style: TextStyle(fontSize: 28)),
+                  Text(submissionConfirmation, style: TextStyle(fontSize: 28)),
                 ],
               ),
             ),
@@ -78,12 +79,12 @@ class _ConfirmSelectionScreenState extends State<ConfirmSelectionScreen> {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    Text("Route"),
+                    Text(route),
                     Text(
                       getRouteName(config.get("tempStoreRoute")),
                       style: TextStyle(fontSize: 24),
                     ),
-                    Text("Station range"),
+                    Text(stationRange),
                     Wrap(
                       children: [
                         for (final rr in routeRange)
@@ -96,22 +97,21 @@ class _ConfirmSelectionScreenState extends State<ConfirmSelectionScreen> {
                       ],
                     ),
                     Text(
-                      "Total ${routeRange.length} stations",
+                      totalStations(routeRange.length),
                       style: TextStyle(fontSize: 24),
                     ),
                     Text("Type"),
                     if (config.get("tempType") == "accident")
-                      Text("Accident", style: TextStyle(fontSize: 24)),
+                      Text(accident, style: TextStyle(fontSize: 24)),
+                    if (config.get("tempType") == "trafficJam")
+                      Text(trafficJam, style: TextStyle(fontSize: 24)),
                   ],
                 ),
               ),
             ),
             Spacer(),
-            Text(
-              "Please ensure that the data is accurate. Data will be deleted 2 hours after your submission.",
-              textAlign: TextAlign.center,
-            ),
-            ElevatedButton(onPressed: _submit, child: Text("Submit")),
+            Text(dataConfirmation, textAlign: TextAlign.center),
+            ElevatedButton(onPressed: _submit, child: Text(submit)),
           ],
         ),
       ),

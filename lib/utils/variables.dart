@@ -36,6 +36,9 @@ const String no = "No";
 const String confirm = "Confirm Selection";
 const String cancel = "Cancel";
 const String confirmBtn = "Confirm";
+const String delete = "Delete";
+const String from = "from";
+const String to = "to";
 
 // landing screen
 const String welcome = "Welcome to bus?";
@@ -63,7 +66,8 @@ const String settings = "Settings";
 // road status
 const String roadStatusText =
     "This is a page for commuters to submit traffic information, so that other commuters can expect if there is any delays on the arrival of a bus.";
-
+const String deleteInfoConfirmationMessage =
+    "Are you sure you want to delete this entry? This cannot be undone!";
 const String signInPreText = "Want to submit information?";
 const String signInWithGoogle = "Sign in with Google";
 
@@ -71,3 +75,26 @@ const String signInWithGoogle = "Sign in with Google";
 const String selectARoute = "Select a route";
 const String confirmRouteSelectionMessage =
     "Please confirm if the selected route is correct.";
+
+// info card
+const String accident = "Accident";
+const String trafficJam = "Traffic jam";
+
+// submit info wizard
+const String addDataSuccess = "Data addition successful";
+const String submissionConfirmation = "Confirm submission";
+const String route = "Route";
+const String stationRange = "Station range";
+String totalStations(int length) {
+  return "Total $length stations";
+}
+
+const String dataConfirmation =
+    "Please ensure that the data is accurate. Data will be deleted 2 hours after your submission.";
+
+const String submit = "Submit";
+const String selectStationRange = "Select a station range";
+const String fromStationDropdown = "From which station?";
+const String toStationDropdown = "To which station?";
+const String selectType = "Select a type";
+const String finalizeBtn = "Finalize submission";

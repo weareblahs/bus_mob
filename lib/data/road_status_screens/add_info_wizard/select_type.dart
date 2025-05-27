@@ -1,3 +1,4 @@
+import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -17,14 +18,14 @@ class _SelectTypeScreenState extends State<SelectTypeScreen> {
   void _selected(String types) {
     if (types == "accident") {
       setState(() {
-        text = "Accident";
+        text = accident;
         type = types;
       });
     }
 
     if (types == "trafficJam") {
       setState(() {
-        text = "Traffic Jam";
+        text = trafficJam;
         type = types;
       });
     }
@@ -47,9 +48,7 @@ class _SelectTypeScreenState extends State<SelectTypeScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text("Select a type", style: TextStyle(fontSize: 28)),
-                ],
+                children: [Text(selectType, style: TextStyle(fontSize: 28))],
               ),
             ),
             Expanded(
@@ -102,7 +101,7 @@ class _SelectTypeScreenState extends State<SelectTypeScreen> {
                   if (type != "")
                     ElevatedButton(
                       onPressed: _finalize,
-                      child: Text("Finalize submission"),
+                      child: Text(finalizeBtn),
                     ),
                 ],
               ),

@@ -1,4 +1,5 @@
 import 'package:bus_mob/utils/get_provider_stations.dart';
+import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -65,10 +66,7 @@ class _SelectStationsScreenState extends State<SelectStationsScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    "Select a station range",
-                    style: TextStyle(fontSize: 28),
-                  ),
+                  Text(selectStationRange, style: TextStyle(fontSize: 28)),
                 ],
               ),
             ),
@@ -81,7 +79,7 @@ class _SelectStationsScreenState extends State<SelectStationsScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text("From which station?"),
+                        const Text(fromStationDropdown),
                         Padding(
                           padding: const EdgeInsetsGeometry.fromLTRB(
                             24,
@@ -108,7 +106,7 @@ class _SelectStationsScreenState extends State<SelectStationsScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text("To which station?"),
+                        const Text(toStationDropdown),
                         Padding(
                           padding: const EdgeInsetsGeometry.fromLTRB(
                             24,

@@ -1,10 +1,12 @@
 import 'package:bus_mob/data/models/information.dart';
 import 'package:bus_mob/utils/convert_providers.dart';
 import 'package:bus_mob/utils/get_provider_stations.dart';
+import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:need_resume/need_resume.dart';
+import 'package:slideable/slideable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class InfoCard extends StatefulWidget {
@@ -27,12 +29,6 @@ class _InfoCardState extends ResumableState<InfoCard> {
     super.initState();
   }
 
-  @override
-  void onReady() {
-    print("ready"); // TODO: implement onReady
-    super.onReady();
-  }
-
   void _init() async {
     final range = await getRouteRange(
       widget.info.routeId!,
@@ -46,39 +42,48 @@ class _InfoCardState extends ResumableState<InfoCard> {
     if (widget.info.infoType == "accident") {
       setState(() {
         assetDir = 'assets/carcrash_icon.svg';
-        type = "Accident";
+        type = accident;
       });
     }
 
     if (widget.info.infoType == "trafficJam") {
       setState(() {
         assetDir = 'assets/trafficjam_icon.svg';
-        type = "Traffic jam";
+        type = trafficJam;
       });
     }
+  }
+
+  void _deleteItem() {
+    showDialog<String>(
+      context: context,
+      builder:
+          (BuildContext context) => AlertDialog(
+            title: const Text(confirm),
+            content: Text(deleteInfoConfirmationMessage),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'selection_declined'),
+                child: const Text(cancel),
+              ),
+              TextButton(onPressed: () {}, child: const Text(delete)),
+            ],
+          ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return br.isNotEmpty
-        ? Slidable(
-          key: const ValueKey(0),
-          // The end action pane is the one at the right or the bottom side.
-          endActionPane: ActionPane(
-            motion: const ScrollMotion(),
-            children: [
-              if (supabase == widget.info.userId)
-                const SlidableAction(
-                  // An action can be bigger than the others.
-                  flex: 2,
-                  onPressed: null,
-                  backgroundColor: Colors.red,
-                  foregroundColor: Colors.white,
-                  icon: Icons.delete,
-                  label: 'Delete',
-                ),
-            ],
-          ),
+        ? Slideable(
+          items: <ActionItems>[
+            if (supabase == widget.info.userId)
+              ActionItems(
+                icon: const Icon(Icons.delete, color: Colors.red),
+                onPress: _deleteItem,
+                backgroudColor: Colors.transparent,
+              ),
+          ],
           child: Card(
             child: Padding(
               padding: EdgeInsets.all(16),
@@ -112,7 +117,7 @@ class _InfoCardState extends ResumableState<InfoCard> {
                                 Expanded(
                                   flex: 2,
                                   child: Text(
-                                    "from",
+                                    from,
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
@@ -129,10 +134,7 @@ class _InfoCardState extends ResumableState<InfoCard> {
                               children: [
                                 Expanded(
                                   flex: 2,
-                                  child: Text(
-                                    "to",
-                                    textAlign: TextAlign.center,
-                                  ),
+                                  child: Text(to, textAlign: TextAlign.center),
                                 ),
                                 Expanded(
                                   flex: 8,
