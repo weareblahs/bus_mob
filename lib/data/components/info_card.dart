@@ -2,6 +2,7 @@ import 'package:bus_mob/data/models/information.dart';
 import 'package:bus_mob/utils/convert_providers.dart';
 import 'package:bus_mob/utils/get_provider_stations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:need_resume/need_resume.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -19,6 +20,7 @@ class _InfoCardState extends ResumableState<InfoCard> {
   List<String> br = [];
   String assetDir = '';
   String type = '';
+  final supabase = Supabase.instance.client.auth.currentUser?.id;
   @override
   void initState() {
     _init();
@@ -54,90 +56,110 @@ class _InfoCardState extends ResumableState<InfoCard> {
         type = "Traffic jam";
       });
     }
-    final supabase = Supabase.instance.client;
-    final User? user = supabase.auth.currentUser;
   }
 
   @override
   Widget build(BuildContext context) {
     return br.isNotEmpty
-        ? Card(
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
-                        child: Text(widget.info.routeId!),
-                      ),
-                    ),
-                    SizedBox(width: 6),
-                    Text(getRouteName(widget.info.routeId!)),
-                  ],
+        ? Slidable(
+          key: const ValueKey(0),
+          // The end action pane is the one at the right or the bottom side.
+          endActionPane: ActionPane(
+            motion: const ScrollMotion(),
+            children: [
+              if (supabase == widget.info.userId)
+                const SlidableAction(
+                  // An action can be bigger than the others.
+                  flex: 2,
+                  onPressed: null,
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  icon: Icons.delete,
+                  label: 'Delete',
                 ),
+            ],
+          ),
+          child: Card(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(4, 2, 4, 2),
+                          child: Text(widget.info.routeId!),
+                        ),
+                      ),
+                      SizedBox(width: 6),
+                      Text(getRouteName(widget.info.routeId!)),
+                    ],
+                  ),
 
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 8,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 2,
-                                child: Text(
-                                  "from",
-                                  textAlign: TextAlign.center,
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 8,
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    "from",
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
-                              ),
-                              Expanded(
-                                flex: 8,
-                                child: Text(
-                                  br[0],
-                                  style: TextStyle(fontSize: 20),
+                                Expanded(
+                                  flex: 8,
+                                  child: Text(
+                                    br[0],
+                                    style: TextStyle(fontSize: 20),
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 2,
-                                child: Text("to", textAlign: TextAlign.center),
-                              ),
-                              Expanded(
-                                flex: 8,
-                                child: Text(
-                                  br[br.length - 1],
-                                  style: TextStyle(fontSize: 20),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    "to",
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                Expanded(
+                                  flex: 8,
+                                  child: Text(
+                                    br[br.length - 1],
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Column(
-                        children: [
-                          SvgPicture.asset(assetDir),
-                          SizedBox(height: 4),
-                          Text(type),
-                        ],
+                      Expanded(
+                        flex: 2,
+                        child: Column(
+                          children: [
+                            SvgPicture.asset(assetDir),
+                            SizedBox(height: 4),
+                            Text(type),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         )

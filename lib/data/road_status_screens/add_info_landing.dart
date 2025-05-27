@@ -1,6 +1,7 @@
 import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AddInfoSection extends StatefulWidget {
@@ -13,7 +14,9 @@ class AddInfoSection extends StatefulWidget {
 class _AddInfoSectionState extends State<AddInfoSection> {
   final supabase = Supabase.instance.client;
   void _signOut() async {
+    Hive.box("busConfig").put("dataChanged", true);
     await supabase.auth.signOut();
+    Hive.box("busConfig").put("dataChanged", false);
   }
 
   @override

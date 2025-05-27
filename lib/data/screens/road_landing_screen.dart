@@ -20,6 +20,7 @@ class RoadLandingScreen extends StatefulWidget {
 class _RoadLandingScreenState extends State<RoadLandingScreen> {
   final supabase = Supabase.instance.client;
   List<Information> data = [];
+  bool isLoading = false;
   @override
   void initState() {
     _init();
@@ -27,14 +28,19 @@ class _RoadLandingScreenState extends State<RoadLandingScreen> {
   }
 
   Future<void> _refresh() async {
+    setState(() {
+      isLoading = true;
+    });
     final res = await getInfoList();
     setState(() {
       data = res;
+      isLoading = false;
     });
   }
 
   void _init() async {
     Hive.box("busConfig").watch(key: "dataChanged").listen((event) {
+      print(event.value);
       if (event.value) {
         _refresh();
       }
@@ -73,17 +79,23 @@ class _RoadLandingScreenState extends State<RoadLandingScreen> {
               },
             ),
           ),
-          Expanded(
-            flex: 12,
-            child: RefreshIndicator(
-              onRefresh: _refresh,
-              child: ListView.builder(
-                padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                itemCount: data.length,
-                itemBuilder: (context, index) => InfoCard(info: data[index]),
+          if (isLoading)
+            Expanded(
+              flex: 12,
+              child: Center(child: CircularProgressIndicator()),
+            ),
+          if (!isLoading)
+            Expanded(
+              flex: 12,
+              child: RefreshIndicator(
+                onRefresh: _refresh,
+                child: ListView.builder(
+                  padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                  itemCount: data.length,
+                  itemBuilder: (context, index) => InfoCard(info: data[index]),
+                ),
               ),
             ),
-          ),
         ],
       ),
     );

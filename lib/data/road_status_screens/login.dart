@@ -2,6 +2,7 @@ import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginSection extends StatefulWidget {
@@ -30,7 +31,7 @@ class _LoginSectionState extends State<LoginSection> {
     if (accessToken == null) {}
 
     if (idToken == null) {}
-
+    Hive.box("busConfig").put("dataChanged", true);
     return supabase.auth.signInWithIdToken(
       provider: OAuthProvider.google,
       idToken: idToken!,
