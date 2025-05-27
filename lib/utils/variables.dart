@@ -19,7 +19,10 @@ Static and realtime data for rapidPenang, rapidKL and rapidPahang buses sourced 
                       
 Map data © OpenStreetMap Contributors. Retrieved via Nominatim.
                       
-Do note that data could be inaccurate for realtime data. Please check official sources, such as myRapid PULSE for accurate realtime data information.''';
+Do note that data could be inaccurate for realtime data. Please check official sources, such as myRapid PULSE for accurate realtime data information.
+
+Icon from Font Awesome. Licensed under a CC BY 4.0 License. See https://creativecommons.org/licenses/by/4.0/ for license.
+''';
 const String legalText = '''
 Copyright 2025 Tan (weareblahs)
                       
