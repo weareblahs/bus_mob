@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bus_mob/data/components/info_card.dart';
 import 'package:bus_mob/data/models/information.dart';
 import 'package:bus_mob/data/repo/repo.dart';
@@ -20,15 +22,18 @@ class _RoadLandingScreenState extends State<RoadLandingScreen> {
   @override
   void initState() {
     _init();
-    // TODO: implement initState
     super.initState();
   }
 
-  void _init() async {
+  Future<void> _refresh() async {
     final res = await getInfoList();
     setState(() {
       data = res;
     });
+  }
+
+  void _init() async {
+    _refresh();
     print(data.length);
   }
 
@@ -46,7 +51,7 @@ class _RoadLandingScreenState extends State<RoadLandingScreen> {
       body: Column(
         children: [
           Expanded(
-            flex: 3,
+            flex: 4,
             child: StreamBuilder<AuthState>(
               stream: supabase.auth.onAuthStateChange,
               builder: (context, snapshot) {
@@ -62,10 +67,14 @@ class _RoadLandingScreenState extends State<RoadLandingScreen> {
             ),
           ),
           Expanded(
-            flex: 7,
-            child: ListView.builder(
-              itemCount: data.length,
-              itemBuilder: (context, index) => InfoCard(info: data[index]),
+            flex: 12,
+            child: RefreshIndicator(
+              onRefresh: _refresh,
+              child: ListView.builder(
+                padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                itemCount: data.length,
+                itemBuilder: (context, index) => InfoCard(info: data[index]),
+              ),
             ),
           ),
         ],

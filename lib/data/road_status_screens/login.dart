@@ -23,7 +23,6 @@ class _LoginSectionState extends State<LoginSection> {
     final signInOption = GoogleSignIn(serverClientId: clientId);
     final googleUser = await signInOption.signIn();
     if (googleUser == null) {}
-    ;
     final googleAuth = await googleUser!.authentication;
     final accessToken = googleAuth.accessToken;
     final idToken = googleAuth.idToken;

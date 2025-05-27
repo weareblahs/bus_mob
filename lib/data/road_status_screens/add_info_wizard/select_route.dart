@@ -23,8 +23,6 @@ class _SelectRouteScreenState extends State<SelectRouteScreen> {
     super.initState();
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +41,7 @@ class _SelectRouteScreenState extends State<SelectRouteScreen> {
             Expanded(
               flex: 9,
               child: ListView.builder(
-                padding: EdgeInsets.all(0),
+                padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                 itemCount: routes.length,
                 itemBuilder:
                     (context, index) => SelectionItem(selection: routes[index]),
