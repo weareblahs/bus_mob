@@ -44,7 +44,6 @@ class Trips {
 
   @override
   String toString() {
-    // TODO: implement toString
     return "Trips($id, $name)";
   }
 }

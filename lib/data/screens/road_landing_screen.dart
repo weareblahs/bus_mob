@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bus_mob/data/components/info_card.dart';
 import 'package:bus_mob/data/models/information.dart';
 import 'package:bus_mob/data/repo/repo.dart';
@@ -40,19 +38,16 @@ class _RoadLandingScreenState extends State<RoadLandingScreen> {
 
   void _init() async {
     Hive.box("busConfig").watch(key: "dataChanged").listen((event) {
-      print(event.value);
       if (event.value) {
         _refresh();
       }
     });
     _refresh();
-    print(data.length);
   }
 
   void _redirect() async {
     Hive.box("busConfig").put("dataChanged", false);
     final res = await context.pushNamed("selectRoute");
-    print(res);
     if (res == null) {
       _init();
     }

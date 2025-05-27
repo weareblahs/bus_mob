@@ -8,6 +8,5 @@ void submitInfo(Information info) async {
 
 Future<List<Information>> getInfoList() async {
   final resp = await supabase.from("bus_info").select();
-  print(resp.toString());
   return resp.map((map) => Information.fromJson(map)).toList();
 }

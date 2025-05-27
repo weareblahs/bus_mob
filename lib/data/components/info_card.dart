@@ -3,7 +3,6 @@ import 'package:bus_mob/utils/convert_providers.dart';
 import 'package:bus_mob/utils/get_provider_stations.dart';
 import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:need_resume/need_resume.dart';
 import 'package:slideable/slideable.dart';

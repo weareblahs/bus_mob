@@ -86,22 +86,6 @@ Future<BusStations> getNearestStations(
     }
   }
 
-  print(
-    BusStations(
-      previousStation:
-          previousBusStop != BusStop()
-              ? previousBusStop.stopName ?? "First station"
-              : "Unknown station",
-      currentStation:
-          currentBusStop != BusStop()
-              ? currentBusStop.stopName ?? "Unknown station"
-              : "Unknown station",
-      nextStation:
-          nextBusStop != BusStop()
-              ? nextBusStop.stopName ?? "Last station"
-              : "Unknown station",
-    ),
-  );
   return BusStations(
     previousStation:
         previousBusStop != BusStop()
