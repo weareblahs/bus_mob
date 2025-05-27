@@ -4,7 +4,6 @@ class Information {
   String? toSeqNo;
   String? infoType;
   String? userId;
-  String? createdAt;
 
   Information({
     this.routeId,
@@ -12,7 +11,6 @@ class Information {
     this.toSeqNo,
     this.infoType,
     this.userId,
-    this.createdAt,
   });
 
   Information.fromJson(Map<String, dynamic> json) {
@@ -21,7 +19,6 @@ class Information {
     toSeqNo = json['toSeqNo'].toString();
     infoType = json['infoType'];
     userId = json['userId'];
-    createdAt = json['created_at'];
   }
 
   Map<String, dynamic> toJson() {
@@ -31,7 +28,6 @@ class Information {
     data['toSeqNo'] = toSeqNo;
     data['infoType'] = infoType;
     data['userId'] = userId;
-    data['created_at'] = createdAt;
     return data;
   }
 }

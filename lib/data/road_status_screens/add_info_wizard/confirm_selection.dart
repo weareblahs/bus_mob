@@ -50,6 +50,7 @@ class _ConfirmSelectionScreenState extends State<ConfirmSelectionScreen> {
     config.delete("tempToStation");
     config.delete("tempType");
     context.pop('add');
+    config.put("dataChanged", true);
     const snackBar = SnackBar(content: Text("Data addition successful"));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

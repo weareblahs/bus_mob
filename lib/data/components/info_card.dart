@@ -3,8 +3,7 @@ import 'package:bus_mob/utils/convert_providers.dart';
 import 'package:bus_mob/utils/get_provider_stations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:instant/instant.dart';
-import 'package:moment_dart/moment_dart.dart';
+import 'package:need_resume/need_resume.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class InfoCard extends StatefulWidget {
@@ -16,7 +15,7 @@ class InfoCard extends StatefulWidget {
   State<InfoCard> createState() => _InfoCardState();
 }
 
-class _InfoCardState extends State<InfoCard> {
+class _InfoCardState extends ResumableState<InfoCard> {
   List<String> br = [];
   String assetDir = '';
   String type = '';
@@ -24,6 +23,12 @@ class _InfoCardState extends State<InfoCard> {
   void initState() {
     _init();
     super.initState();
+  }
+
+  @override
+  void onReady() {
+    print("ready"); // TODO: implement onReady
+    super.onReady();
   }
 
   void _init() async {

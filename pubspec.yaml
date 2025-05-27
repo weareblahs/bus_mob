@@ -53,6 +53,7 @@ dependencies:
   flutter_svg: ^2.1.0
   moment_dart: ^5.2.3
   instant: ^0.5.1
+  need_resume: ^1.0.7+1
 
 dev_dependencies:
   flutter_test:
