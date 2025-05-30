@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:bus_mob/data/models/bus_basic_info.dart';
-import 'package:bus_mob/data/models/bus_stop.dart';
-import 'package:bus_mob/utils/distance.dart';
+import '../data/models/bus_basic_info.dart';
+import '../data/models/bus_stop.dart';
+import 'distance.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 

@@ -1,4 +1,4 @@
-import 'package:bus_mob/utils/variables.dart';
+import '../../utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_sign_in/google_sign_in.dart';

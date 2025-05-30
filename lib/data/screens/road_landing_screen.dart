@@ -1,8 +1,8 @@
-import 'package:bus_mob/data/components/info_card.dart';
-import 'package:bus_mob/data/models/information.dart';
-import 'package:bus_mob/data/repo/repo.dart';
-import 'package:bus_mob/data/road_status_screens/add_info_landing.dart';
-import 'package:bus_mob/data/road_status_screens/login.dart';
+import '../components/info_card.dart';
+import '../models/information.dart';
+import '../repo/repo.dart';
+import '../road_status_screens/add_info_landing.dart';
+import '../road_status_screens/login.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';

@@ -1,9 +1,9 @@
-import 'package:bus_mob/data/container/tab_container.dart';
-import 'package:bus_mob/data/road_status_screens/add_info_wizard/confirm_selection.dart';
-import 'package:bus_mob/data/road_status_screens/add_info_wizard/select_route.dart';
-import 'package:bus_mob/data/road_status_screens/add_info_wizard/select_stations.dart';
-import 'package:bus_mob/data/road_status_screens/add_info_wizard/select_type.dart';
-import 'package:bus_mob/data/screens/provider_selection.dart';
+import '../container/tab_container.dart';
+import '../road_status_screens/add_info_wizard/confirm_selection.dart';
+import '../road_status_screens/add_info_wizard/select_route.dart';
+import '../road_status_screens/add_info_wizard/select_stations.dart';
+import '../road_status_screens/add_info_wizard/select_type.dart';
+import '../screens/provider_selection.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';
 

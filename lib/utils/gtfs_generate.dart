@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:bus_mob/data/models/bus_basic_info.dart';
-import 'package:bus_mob/data/models/bus_trip_map.dart';
-import 'package:bus_mob/data/models/osrm_data.dart';
-import 'package:bus_mob/utils/find_osrm_duration_and_distance.dart';
-import 'package:bus_mob/utils/get_nearest_stations.dart';
-import 'package:bus_mob/utils/get_traffic_info.dart';
-import 'package:bus_mob/utils/osrm.dart';
-import 'package:bus_mob/utils/variables.dart';
+import '../data/models/bus_basic_info.dart';
+import '../data/models/bus_trip_map.dart';
+import '../data/models/osrm_data.dart';
+import 'find_osrm_duration_and_distance.dart';
+import 'get_nearest_stations.dart';
+import 'get_traffic_info.dart';
+import 'osrm.dart';
+import 'variables.dart';
 import 'package:gtfs_realtime_bindings/gtfs_realtime_bindings.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:http/http.dart' as http;

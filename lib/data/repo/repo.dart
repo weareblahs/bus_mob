@@ -1,4 +1,4 @@
-import 'package:bus_mob/data/models/information.dart';
+import '../models/information.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;

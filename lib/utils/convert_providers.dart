@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:bus_mob/data/models/selection.dart';
+import '../data/models/selection.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 

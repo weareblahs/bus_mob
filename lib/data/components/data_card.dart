@@ -1,5 +1,5 @@
-import 'package:bus_mob/data/models/bus_basic_info.dart';
-import 'package:bus_mob/utils/variables.dart';
+import '../models/bus_basic_info.dart';
+import '../../utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 

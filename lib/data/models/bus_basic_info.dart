@@ -1,4 +1,4 @@
-import 'package:bus_mob/data/models/osrm_data.dart';
+import 'osrm_data.dart';
 
 class BusBasicInfo {
   String? licensePlate;

@@ -1,7 +1,7 @@
-import 'package:bus_mob/data/settings/settings_page.dart';
-import 'package:bus_mob/data/screens/home.dart';
-import 'package:bus_mob/data/screens/road_landing_screen.dart';
-import 'package:bus_mob/utils/variables.dart';
+import '../settings/settings_page.dart';
+import '../screens/home.dart';
+import '../screens/road_landing_screen.dart';
+import '../../utils/variables.dart';
 import 'package:flutter/material.dart';
 
 class TabContainer extends StatefulWidget {

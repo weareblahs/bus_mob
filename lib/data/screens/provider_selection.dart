@@ -1,7 +1,7 @@
-import 'package:bus_mob/data/components/provider_selection_button.dart';
-import 'package:bus_mob/data/models/providers.dart';
-import 'package:bus_mob/utils/provider_selection.dart';
-import 'package:bus_mob/utils/variables.dart';
+import '../components/provider_selection_button.dart';
+import '../models/providers.dart';
+import '../../utils/provider_selection.dart';
+import '../../utils/variables.dart';
 import 'package:flutter/material.dart';
 
 class ProviderSelectionScreen extends StatefulWidget {
