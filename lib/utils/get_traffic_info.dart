@@ -1,8 +1,6 @@
 import 'package:bus_mob/data/repo/repo.dart';
 
 Future<String?> getTrafficInfoText(int current, String route) async {
-  print(current);
-  print(route);
   final data = await getInfo(current, route);
   if (data.isEmpty) {
     return null;

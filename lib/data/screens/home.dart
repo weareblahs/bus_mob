@@ -124,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(24, 32, 24, 0),
+              padding: EdgeInsets.fromLTRB(24, 48, 24, 0),
               child: Column(
                 children: [
                   if (providers.isNotEmpty)

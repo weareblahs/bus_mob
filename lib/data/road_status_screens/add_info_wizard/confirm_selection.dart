@@ -8,7 +8,6 @@ import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/v4.dart';
 
 class ConfirmSelectionScreen extends StatefulWidget {
   const ConfirmSelectionScreen({super.key});
