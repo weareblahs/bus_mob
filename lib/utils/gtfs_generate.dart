@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:bus_mob/data/models/bus_basic_info.dart';
 import 'package:bus_mob/data/models/bus_trip_map.dart';
+import 'package:bus_mob/data/models/osrm_data.dart';
+import 'package:bus_mob/utils/find_osrm_duration_and_distance.dart';
 import 'package:bus_mob/utils/get_nearest_stations.dart';
 import 'package:bus_mob/utils/get_traffic_info.dart';
 import 'package:bus_mob/utils/osrm.dart';
@@ -36,7 +38,6 @@ Future<List<BusBasicInfo>> generateGtfs(
         'https://github.com/weareblahs/bus/raw/refs/heads/main/app/src/internalData/trips.json',
       ),
     );
-
     List<Trips> trips = [];
     if (tripData.statusCode == 200) {
       for (var item in json.decode(tripData.body)) {
@@ -85,6 +86,16 @@ Future<List<BusBasicInfo>> generateGtfs(
                 route,
               );
             }
+            var osrmData = OsrmData();
+            if (nearest.currentStationLat != null &&
+                nearest.currentStationLon != null) {
+              osrmData = await getOsrmData(
+                bus.vehicle.position.latitude,
+                bus.vehicle.position.longitude,
+                nearest.currentStationLat!,
+                nearest.currentStationLon!,
+              );
+            }
             finalResult.add(
               BusBasicInfo(
                 licensePlate: bus.vehicle.vehicle.licensePlate,
@@ -94,9 +105,9 @@ Future<List<BusBasicInfo>> generateGtfs(
                 currentParsedLocation: cpl,
                 busStations: nearest,
                 trafficInfo: trafficText,
+                osrmData: osrmData,
               ),
             );
-
             updateMsg(busUpdated(finalResult.length));
           }
         }

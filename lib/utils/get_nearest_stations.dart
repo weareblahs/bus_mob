@@ -103,5 +103,13 @@ Future<BusStations> getNearestStations(
         currentBusStop.stopSequence != null
             ? int.parse(currentBusStop.stopSequence!)
             : -1,
+    currentStationLat:
+        currentBusStop.stopLat != null
+            ? double.tryParse(currentBusStop.stopLat!)
+            : -1,
+    currentStationLon:
+        currentBusStop.stopLon != null
+            ? double.tryParse(currentBusStop.stopLon!)
+            : -1,
   );
 }

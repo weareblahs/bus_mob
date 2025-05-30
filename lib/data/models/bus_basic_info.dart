@@ -1,3 +1,5 @@
+import 'package:bus_mob/data/models/osrm_data.dart';
+
 class BusBasicInfo {
   String? licensePlate;
   double? speed = 0.0;
@@ -6,6 +8,7 @@ class BusBasicInfo {
   String? currentParsedLocation = "Unknown location";
   BusStations? busStations = BusStations();
   String? trafficInfo = "";
+  OsrmData? osrmData = OsrmData();
 
   BusBasicInfo({
     required this.licensePlate,
@@ -15,11 +18,12 @@ class BusBasicInfo {
     this.currentParsedLocation,
     this.busStations,
     this.trafficInfo,
+    this.osrmData,
   });
 
   @override
   String toString() {
-    return "BusBasicInfo: $licensePlate, $speed, $latitude, $longitude, $currentParsedLocation, $busStations, $trafficInfo";
+    return "BusBasicInfo: $licensePlate, $speed, $latitude, $longitude, $currentParsedLocation, $busStations, $trafficInfo, $osrmData";
   }
 }
 
@@ -30,6 +34,8 @@ class BusStations {
   double? distanceToCurrent = -1;
   double? timeRemaining = -1;
   int? currentStationSequence = -1;
+  double? currentStationLat = -1;
+  double? currentStationLon = -1;
 
   BusStations({
     this.previousStation,
@@ -38,10 +44,12 @@ class BusStations {
     this.distanceToCurrent,
     this.timeRemaining,
     this.currentStationSequence,
+    this.currentStationLat,
+    this.currentStationLon,
   });
 
   @override
   String toString() {
-    return "BusStations($previousStation, $currentStation, $nextStation, $distanceToCurrent, $timeRemaining, $currentStationSequence)";
+    return "BusStations($previousStation, $currentStation, $nextStation, $distanceToCurrent, $timeRemaining, $currentStationSequence, $currentStationLat, $currentStationLon)";
   }
 }

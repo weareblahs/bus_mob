@@ -1,4 +1,5 @@
 import 'package:bus_mob/data/models/bus_basic_info.dart';
+import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 
@@ -61,7 +62,12 @@ class DataCard extends StatelessWidget {
                               child: Column(
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.fromLTRB(
+                                      8.0,
+                                      8.0,
+                                      8.0,
+                                      0,
+                                    ),
                                     child: Text(
                                       busInfo.busStations!.currentStation!,
                                       style: TextStyle(
@@ -71,6 +77,19 @@ class DataCard extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
+                                  if (busInfo.osrmData!.duration != -1.0 ||
+                                      busInfo.osrmData!.duration != -1.0)
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
+                                      child: Text(
+                                        stationRemaining(
+                                          busInfo.osrmData!.distance!,
+                                          busInfo.osrmData!.duration!,
+                                        ),
+                                        style: TextStyle(height: 0),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
                                 ],
                               ),
                             ),
