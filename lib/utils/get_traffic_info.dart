@@ -24,9 +24,9 @@ Future<String?> getTrafficInfoTextCompact(int current, String route) async {
   }
   switch (data[0].infoType) {
     case "trafficJam":
-      return "Expect delays: Traffic jam";
+      return trafficJamShortenedMessage;
     case "accident":
-      return "Expect delays: Traffic accident";
+      return accidentShortenedMessage;
     default:
       return "";
   }

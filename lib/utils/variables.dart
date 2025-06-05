@@ -126,3 +126,5 @@ const String accidentNotificationMessage =
     "User report: Accident happened between roads of this bus. Do expect delays.";
 const String trafficJamNotificationMessage =
     "User report: Traffic jam between roads of this bus. Do expect delays.";
+const String trafficJamShortenedMessage = "Expect delays: Traffic jam";
+const String accidentShortenedMessage = "Expect delays: Traffic accident";
