@@ -1,4 +1,4 @@
-package com.fss09924.bus_mob
+package dev.ntyx.bqm
 
 import io.flutter.embedding.android.FlutterActivity
 
