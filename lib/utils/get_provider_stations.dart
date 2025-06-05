@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../data/models/station_data.dart';
+import '../models/station_data.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:http/http.dart' as http;

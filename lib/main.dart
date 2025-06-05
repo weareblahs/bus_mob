@@ -1,4 +1,4 @@
-import 'data/navigation/navigation.dart';
+import 'navigation/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';

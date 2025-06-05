@@ -1,5 +1,5 @@
 import 'dart:convert';
-import '../data/models/selection.dart';
+import '../models/selection.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 

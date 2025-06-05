@@ -1,4 +1,4 @@
-import 'package:bus_mob/data/models/arrivals.dart';
+import 'package:bus_mob/models/arrivals.dart';
 import 'package:bus_mob/utils/find_osrm_duration_and_distance.dart';
 import 'package:bus_mob/utils/get_nearest_stations.dart';
 import 'package:gtfs_realtime_bindings/gtfs_realtime_bindings.dart';

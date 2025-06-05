@@ -1,8 +1,8 @@
 import '../models/information.dart';
 import '../repo/repo.dart';
-import '../../utils/convert_providers.dart';
-import '../../utils/get_provider_stations.dart';
-import '../../utils/variables.dart';
+import '../utils/convert_providers.dart';
+import '../utils/get_provider_stations.dart';
+import '../utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';

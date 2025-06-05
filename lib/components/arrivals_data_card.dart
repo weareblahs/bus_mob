@@ -1,4 +1,4 @@
-import 'package:bus_mob/data/models/arrivals.dart';
+import 'package:bus_mob/models/arrivals.dart';
 import 'package:bus_mob/utils/get_traffic_info.dart';
 import 'package:bus_mob/utils/variables.dart';
 import 'package:flutter/material.dart';

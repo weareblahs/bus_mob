@@ -1,4 +1,4 @@
-import 'package:bus_mob/data/models/arrivals.dart';
+import 'package:bus_mob/models/arrivals.dart';
 import 'package:bus_mob/utils/gtfs_generate/get_found_trips.dart';
 import 'package:bus_mob/utils/gtfs_generate/get_gtfs_data.dart';
 import 'package:bus_mob/utils/search_arrivals/create_data.dart';

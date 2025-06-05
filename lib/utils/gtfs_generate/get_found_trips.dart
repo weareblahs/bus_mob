@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:bus_mob/data/models/bus_trip_map.dart';
+import 'package:bus_mob/models/bus_trip_map.dart';
 
 Future<List?> getFoundTrips(
   String provider,

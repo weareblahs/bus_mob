@@ -1,7 +1,7 @@
 import '../../components/selection.dart';
 import '../../models/selection.dart';
-import '../../../utils/convert_providers.dart';
-import '../../../utils/variables.dart';
+import '../../utils/convert_providers.dart';
+import '../../utils/variables.dart';
 import 'package:flutter/material.dart';
 
 class SelectRouteScreen extends StatefulWidget {

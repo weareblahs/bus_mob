@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 
-import '../data/models/bus_basic_info.dart';
-import '../data/models/bus_stop.dart';
+import '../models/bus_basic_info.dart';
+import '../models/bus_stop.dart';
 import 'distance.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;

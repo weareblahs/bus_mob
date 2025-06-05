@@ -1,5 +1,5 @@
-import 'package:bus_mob/data/models/bus_basic_info.dart';
-import 'package:bus_mob/data/models/osrm_data.dart';
+import 'package:bus_mob/models/bus_basic_info.dart';
+import 'package:bus_mob/models/osrm_data.dart';
 import 'package:bus_mob/utils/find_osrm_duration_and_distance.dart';
 import 'package:bus_mob/utils/get_nearest_stations.dart';
 import 'package:bus_mob/utils/get_traffic_info.dart';

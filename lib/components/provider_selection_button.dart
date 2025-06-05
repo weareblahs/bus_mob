@@ -1,6 +1,6 @@
 import '../models/providers.dart';
-import '../../utils/download_provider_to_local_storage.dart';
-import '../../utils/variables.dart';
+import '../utils/download_provider_to_local_storage.dart';
+import '../utils/variables.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/adapters.dart';

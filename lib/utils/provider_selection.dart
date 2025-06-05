@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../data/models/providers.dart';
+import '../models/providers.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Providers>> getProviders() async {

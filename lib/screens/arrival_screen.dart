@@ -1,5 +1,5 @@
-import 'package:bus_mob/data/components/arrivals_data_card.dart';
-import 'package:bus_mob/data/models/arrivals.dart';
+import 'package:bus_mob/components/arrivals_data_card.dart';
+import 'package:bus_mob/models/arrivals.dart';
 import 'package:bus_mob/utils/get_provider_stations.dart';
 import 'package:bus_mob/utils/search_arrivals.dart';
 import 'package:flutter/material.dart';

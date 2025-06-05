@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:bus_mob/data/components/data_card.dart';
-import 'package:bus_mob/data/models/bus_basic_info.dart';
+import 'package:bus_mob/components/data_card.dart';
+import 'package:bus_mob/models/bus_basic_info.dart';
 import 'package:bus_mob/utils/convert_providers.dart';
 import 'package:bus_mob/utils/download_provider_to_local_storage.dart';
 import 'package:bus_mob/utils/gtfs_generate.dart';

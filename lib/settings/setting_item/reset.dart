@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../utils/variables.dart';
+import '../../utils/variables.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:restart_app/restart_app.dart';
 

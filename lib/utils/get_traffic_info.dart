@@ -1,6 +1,6 @@
 import 'package:bus_mob/utils/variables.dart';
 
-import '../data/repo/repo.dart';
+import '../repo/repo.dart';
 
 Future<String?> getTrafficInfoText(int current, String route) async {
   final data = await getInfo(current, route);
