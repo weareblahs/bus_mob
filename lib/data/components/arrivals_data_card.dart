@@ -36,13 +36,10 @@ class ArrivalsDataCard extends StatelessWidget {
                           children: [
                             Text(
                               arrivals.licensePlate!,
-                              style: TextStyle(fontSize: 24),
+                              style: TextStyle(fontSize: 18),
                             ),
-                            Container(
-                              margin: EdgeInsets.symmetric(
-                                vertical: 0,
-                                horizontal: 2,
-                              ),
+                            Padding(
+                              padding: EdgeInsetsGeometry.fromLTRB(6, 0, 6, 0),
                               child: ElevatedButton(
                                 onPressed: () {
                                   MapsLauncher.launchCoordinates(
@@ -71,16 +68,22 @@ class ArrivalsDataCard extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: Column(
                       children: [
-                        Text(
-                          arrivals.duration! < 60
-                              ? lessThan1Min
-                              : getTimeFromDuration(arrivals.duration!),
-                          style: TextStyle(fontSize: 24),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            arrivals.duration! < 60
+                                ? lessThan1Min
+                                : getTimeFromDuration(arrivals.duration!),
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
-                        Text(
-                          stopsAway(arrivals.stopsAway!),
-                          style: TextStyle(fontSize: 12),
-                          textAlign: TextAlign.end,
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            stopsAway(arrivals.stopsAway!),
+                            style: TextStyle(fontSize: 10),
+                            textAlign: TextAlign.end,
+                          ),
                         ),
                       ],
                     ),

@@ -1,3 +1,5 @@
+import 'package:bus_mob/utils/variables.dart';
+
 import '../data/repo/repo.dart';
 
 Future<String?> getTrafficInfoText(int current, String route) async {
@@ -7,9 +9,9 @@ Future<String?> getTrafficInfoText(int current, String route) async {
   }
   switch (data[0].infoType) {
     case "trafficJam":
-      return "User report: Traffic jam between roads of this bus. Do expect delays.";
+      return trafficJamNotificationMessage;
     case "accident":
-      return "User report: Accident happened between roads of this bus. Do expect delays.";
+      return accidentNotificationMessage;
     default:
       return null;
   }

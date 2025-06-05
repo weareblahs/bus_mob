@@ -47,17 +47,11 @@ class _ArrivalScreenState extends State<ArrivalScreen> {
     });
   }
 
-  Future<void> _refresh() async {
-    if (selectValue != "") {
-      _searchData();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.fromLTRB(16, 36, 32, 16),
+        padding: EdgeInsets.fromLTRB(12, 48, 12, 0),
         child: SizedBox(
           width: double.infinity,
           child: Column(
@@ -83,6 +77,7 @@ class _ArrivalScreenState extends State<ArrivalScreen> {
                         if (stations.isNotEmpty && !isLoading)
                           Expanded(
                             child: ListView.builder(
+                              padding: EdgeInsets.fromLTRB(0, 4, 0, 4),
                               itemCount: displayData.length,
                               itemBuilder:
                                   (context, index) => ArrivalsDataCard(

@@ -118,5 +118,11 @@ String stopsAway(int stops) {
 }
 
 String passed(String licensePlate, double stopsAway) {
-  return "$licensePlate has passed from this station. It is now ${stopsAway.abs().toInt()} stops away from this station.";
+  return "$licensePlate has passed from station (${stopsAway.abs().toInt()} stops)";
 }
+
+// data card notification message
+const String accidentNotificationMessage =
+    "User report: Accident happened between roads of this bus. Do expect delays.";
+const String trafficJamNotificationMessage =
+    "User report: Traffic jam between roads of this bus. Do expect delays.";

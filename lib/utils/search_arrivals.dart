@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:bus_mob/data/models/arrivals.dart';
 import 'package:bus_mob/data/models/bus_trip_map.dart';
 import 'package:bus_mob/data/models/station_data.dart';
@@ -52,13 +50,11 @@ Future<List<Arrivals>> searchArrivals(int sequence, String route) async {
           }
         }
         final foundTripsForRoute = trips.where((t) => t.name == route);
-        print(foundTripsForRoute.length);
 
         final feedMessage = FeedMessage.fromBuffer(response.bodyBytes);
         for (final bus in feedMessage.entity) {
           for (final r in foundTripsForRoute) {
             if (r.id == bus.vehicle.trip.tripId) {
-              print(r);
               // check if the bus is beyond the distance or something let's see
               final data = await getOsrmData(
                 bus.vehicle.position.latitude,
