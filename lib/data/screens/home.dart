@@ -48,9 +48,11 @@ class _HomeScreenState extends State<HomeScreen> {
         config.get("route"),
         _updateMsg,
       );
-      setState(() {
-        info = busInfo;
-      });
+      if (busInfo != null) {
+        setState(() {
+          info = busInfo;
+        });
+      }
       setState(() {
         isLoading = false;
       });
@@ -113,19 +115,23 @@ class _HomeScreenState extends State<HomeScreen> {
       _updateMsg,
     );
     if (mounted) {
-      setState(() {
-        info = busInfo;
-        isLoading = false;
-      });
+      if (busInfo != null) {
+        setState(() {
+          info = busInfo;
+          isLoading = false;
+        });
+      }
     }
   }
 
   Future<void> setRoute(String provider, String route) async {
     if (mounted) {
       final busInfo = await generateGtfs(provider, route, _updateMsg);
-      setState(() {
-        info = busInfo;
-      });
+      if (busInfo != null) {
+        setState(() {
+          info = busInfo;
+        });
+      }
     }
   }
 

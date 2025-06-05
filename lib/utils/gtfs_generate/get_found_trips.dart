@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:bus_mob/data/models/bus_trip_map.dart';
 
-Future<dynamic> getFoundTrips(
+Future<List?> getFoundTrips(
   String provider,
   Function updateMsg,
   String route,
@@ -27,5 +27,6 @@ Future<dynamic> getFoundTrips(
   } else {
     updateMsg("An error occured. Status code: ${tripData.statusCode}");
   }
-  return trips.where((t) => t.name == route);
+  final filtered = trips.where((t) => t.name == route);
+  return filtered.toList();
 }
