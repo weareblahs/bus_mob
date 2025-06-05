@@ -42,38 +42,46 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<bool> _refreshScript() async {
-    final busInfo = await generateGtfs(
-      config.get("provider"),
-      config.get("route"),
-      _updateMsg,
-    );
-    setState(() {
-      info = busInfo;
-    });
-    setState(() {
-      isLoading = false;
-    });
+    if (mounted) {
+      final busInfo = await generateGtfs(
+        config.get("provider"),
+        config.get("route"),
+        _updateMsg,
+      );
+      setState(() {
+        info = busInfo;
+      });
+      setState(() {
+        isLoading = false;
+      });
+    }
     return true;
   }
 
   void _updateMsg(String message) {
-    setState(() {
-      msg = message;
-    });
+    if (mounted) {
+      setState(() {
+        msg = message;
+      });
+    }
   }
 
   Future<bool> _refresh() async {
-    setState(() {
-      isLoading = true;
-    });
+    if (mounted) {
+      setState(() {
+        isLoading = true;
+      });
+    }
 
     return _refreshScript();
   }
 
   Future<bool> _reload() async {
-    setState(() {
-      isLoading = false;
-    });
+    if (mounted) {
+      setState(() {
+        isLoading = false;
+      });
+    }
 
     return _refreshScript();
   }
@@ -92,27 +100,39 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _continue() async {
-    setState(() {
-      providers = dropdownProviders();
-      isLoading = true;
-    });
+    if (mounted) {
+      setState(() {
+        providers = dropdownProviders();
+        isLoading = true;
+      });
+    }
     _startReloadTimer();
     final busInfo = await generateGtfs(
       config.get("provider"),
       config.get("route"),
       _updateMsg,
     );
-    setState(() {
-      info = busInfo;
-      isLoading = false;
-    });
+    if (mounted) {
+      setState(() {
+        info = busInfo;
+        isLoading = false;
+      });
+    }
   }
 
   Future<void> setRoute(String provider, String route) async {
-    final busInfo = await generateGtfs(provider, route, _updateMsg);
-    setState(() {
-      info = busInfo;
-    });
+    if (mounted) {
+      final busInfo = await generateGtfs(provider, route, _updateMsg);
+      setState(() {
+        info = busInfo;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   @override

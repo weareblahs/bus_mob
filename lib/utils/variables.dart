@@ -66,9 +66,10 @@ String stationRemaining(double distance, double duration) {
 }
 
 // tabs (global)
-const String busStatus = "Bus status";
-const String roadStatus = "Road status";
+const String busStatus = "Status";
+const String roadStatus = "Traffic";
 const String settings = "Settings";
+const String arrivals = "Arrivals";
 
 // road status
 const String roadStatusText =
@@ -105,3 +106,17 @@ const String fromStationDropdown = "From which station?";
 const String toStationDropdown = "To which station?";
 const String selectType = "Select a type";
 const String finalizeBtn = "Finalize submission";
+
+// arrivals page
+const String lessThan1Min = "< 1 min";
+String getTimeFromDuration(double duration) {
+  return "${(duration / 60).toStringAsFixed(0)} min${((duration / 60).toStringAsFixed(0) == 1) ? "" : "s"}";
+}
+
+String stopsAway(int stops) {
+  return "$stops stop${stops == 1 ? "" : "s"} away";
+}
+
+String passed(String licensePlate, double stopsAway) {
+  return "$licensePlate has passed from this station. It is now ${stopsAway.abs().toInt()} stops away from this station.";
+}

@@ -13,6 +13,7 @@ class DataCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.fromLTRB(12, 0, 12, 4),
       child: Card(
+        color: Colors.black,
         child: Column(
           children: [
             Padding(

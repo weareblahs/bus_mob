@@ -1,3 +1,5 @@
+import 'package:bus_mob/data/screens/arrival_screen.dart';
+
 import '../settings/settings_page.dart';
 import '../screens/home.dart';
 import '../screens/road_landing_screen.dart';
@@ -23,10 +25,15 @@ class _TabContainerState extends State<TabContainer> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         body: const TabBarView(
-          children: [HomeScreen(), RoadLandingScreen(), SettingsPage()],
+          children: [
+            HomeScreen(),
+            ArrivalScreen(),
+            RoadLandingScreen(),
+            SettingsPage(),
+          ],
         ),
         bottomNavigationBar: TabBar(
           labelPadding: EdgeInsets.all(8),
@@ -35,6 +42,7 @@ class _TabContainerState extends State<TabContainer> {
           unselectedLabelColor: Colors.blueGrey,
           tabs: [
             _tabBarItem(busStatus, Icons.bus_alert),
+            _tabBarItem(arrivals, Icons.share_arrival_time),
             _tabBarItem(roadStatus, Icons.report),
             _tabBarItem(settings, Icons.settings),
           ],

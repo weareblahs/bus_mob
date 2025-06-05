@@ -6,7 +6,6 @@ import '../data/models/osrm_data.dart';
 import 'find_osrm_duration_and_distance.dart';
 import 'get_nearest_stations.dart';
 import 'get_traffic_info.dart';
-import 'osrm.dart';
 import 'variables.dart';
 import 'package:gtfs_realtime_bindings/gtfs_realtime_bindings.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -18,18 +17,12 @@ Future<List<BusBasicInfo>> generateGtfs(
   String route,
   Function updateMsg,
 ) async {
-  getOsrmInfo();
   updateMsg(busSearchStart);
-  final providerList = await http.get(
-    Uri.parse(
-      'https://raw.githubusercontent.com/weareblahs/bus/refs/heads/main/app/src/internalData/providers.json',
-    ),
-  );
-  if (providerList.statusCode == 200) {
-    // get provider URL
-    final config = Hive.box('busConfig');
-    final url = Uri.parse(config.get("providerEndpointURL"));
-    final response = await http.get(url);
+  // get provider URL
+  final config = Hive.box('busConfig');
+  final url = Uri.parse(config.get("providerEndpointURL"));
+  final response = await http.get(url);
+  if (response.statusCode == 200) {
     // get from trip id
     // QUICK NOTE: the following URL is already static. for the original React instance, this file is compiled
     // with the react code. when there is an update from GitHub, this will also auto update, too
@@ -50,7 +43,6 @@ Future<List<BusBasicInfo>> generateGtfs(
     } else {
       updateMsg("An error occured. Status code: ${tripData.statusCode}");
     }
-
     final foundTripsForRoute = trips.where((t) => t.name == route);
 
     if (response.statusCode == 200) {

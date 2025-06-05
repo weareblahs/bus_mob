@@ -1,0 +1,5 @@
+arrival logic
+ - user selects station from route
+ - finds that super huge file for trip IDs
+ - filters out and sends request to project-osrm.org (bus current, selected station)
+ - to find out how many stops remaining, parse sequence number of station

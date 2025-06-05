@@ -10,7 +10,6 @@ Future<OsrmData> getOsrmData(
   double lat2,
   double lon2,
 ) async {
-  debugPrint("$lat1 $lon1 $lat2 $lon2");
   final osrmUri = Uri.parse(
     "https://router.project-osrm.org/route/v1/driving/$lon1,$lat1;$lon2,$lat2?overview=false",
   );
