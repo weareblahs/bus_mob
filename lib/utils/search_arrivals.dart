@@ -79,6 +79,8 @@ Future<List<Arrivals>> searchArrivals(int sequence, String route) async {
                     stopsAway: dist,
                     busLat: bus.vehicle.position.latitude,
                     busLon: bus.vehicle.position.longitude,
+                    route: route,
+                    seq: sequence,
                   ),
                 );
               }
