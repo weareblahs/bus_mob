@@ -1,11 +1,9 @@
-import 'dart:convert';
+import 'package:bus_mob/utils/get_nearest_stations/get_list_of_bus_stops.dart';
+import 'package:bus_mob/utils/get_nearest_stations/get_nearby_bus_stops.dart';
 import 'package:flutter/cupertino.dart';
-
 import '../models/bus_basic_info.dart';
 import '../models/bus_stop.dart';
-import 'distance.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:http/http.dart' as http;
 
 Future<BusStations> getNearestStations(
   double lat,
@@ -14,34 +12,13 @@ Future<BusStations> getNearestStations(
 ) async {
   var config = Hive.box("busConfig");
   var provider = config.get("provider");
-
-  final stationList = await http.get(
-    Uri.parse("https://b.ntyx.dev/data/stnInfo/${provider}_$route.json"),
-  );
+  var stops = await getListOfBusStops(provider, route);
   try {
-    List<BusStop> stops = [];
-    final busStopJson = json.decode(stationList.body);
-    for (final b in busStopJson) {
-      stops.add(BusStop.fromJson(b));
-    }
-    List<BusStop> nearbyBusStop = [];
-    var previousBusStop = BusStop();
-    var nextBusStop = BusStop();
-    var currentBusStop = BusStop();
-    for (final s in stops) {
-      if (distance(
-            lat.toDouble(),
-            lon.toDouble(),
-            double.parse(s.stopLat!),
-            double.parse(s.stopLon!),
-            "K",
-          ) <=
-          0.8) {
-        nearbyBusStop.add(s);
-      }
-    }
+    BusStop previousBusStop = BusStop();
+    BusStop nextBusStop = BusStop();
+    BusStop currentBusStop = BusStop();
+    final nearbyBusStop = getNearbyBusStops(stops, lat, lon);
     // previous station
-
     if (nearbyBusStop.isNotEmpty) {
       switch (nearbyBusStop.length) {
         case 1:
