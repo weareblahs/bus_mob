@@ -14,6 +14,7 @@ Future<OsrmData> getOsrmData(
   );
   final osrmReq = await http.get(osrmUri);
   if (osrmReq.statusCode == 200) {
+    print(osrmReq.body);
     return OsrmData.fromJson(json.decode(osrmReq.body));
   }
   return OsrmData();

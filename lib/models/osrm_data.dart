@@ -18,7 +18,9 @@ class OsrmData {
               ? jsonData['routes'][0]['distance']
               : jsonData['routes'][0]['distance'].toDouble();
     }
-    duration = tempDuration;
+    // both are inflated to reflect the arrival time from a perspective of a public transport, which the OSRM request is only available for car routing.
+    // an implementation with public transportation routes might be coming soon
+    duration = tempDuration * 2.2;
     distance = tempDistance;
   }
 
