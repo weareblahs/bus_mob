@@ -37,6 +37,9 @@ class _ArrivalScreenState extends State<ArrivalScreen> {
     setState(() {
       isLoading = true;
     });
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("Loading arrival data...")));
     final res = await searchArrivals(
       int.parse(selectValue),
       config.get("route"),
@@ -73,7 +76,10 @@ class _ArrivalScreenState extends State<ArrivalScreen> {
                     onRefresh: _searchData,
                     child: Column(
                       children: [
-                        if (isLoading) CircularProgressIndicator(),
+                        if (isLoading)
+                          Expanded(
+                            child: Center(child: CircularProgressIndicator()),
+                          ),
                         if (stations.isNotEmpty && !isLoading)
                           Expanded(
                             child: ListView.builder(

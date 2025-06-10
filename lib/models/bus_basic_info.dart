@@ -1,4 +1,4 @@
-import 'osrm_data.dart';
+import 'package:bus_mob/models/ors_data.dart';
 
 class BusBasicInfo {
   String? licensePlate;
@@ -8,7 +8,7 @@ class BusBasicInfo {
   String? currentParsedLocation = "Unknown location";
   BusStations? busStations = BusStations();
   String? trafficInfo = "";
-  OsrmData? osrmData = OsrmData();
+  OrsData? orsData = OrsData();
 
   BusBasicInfo({
     required this.licensePlate,
@@ -18,12 +18,12 @@ class BusBasicInfo {
     this.currentParsedLocation,
     this.busStations,
     this.trafficInfo,
-    this.osrmData,
+    this.orsData,
   });
 
   @override
   String toString() {
-    return "BusBasicInfo: $licensePlate, $speed, $latitude, $longitude, $currentParsedLocation, $busStations, $trafficInfo, $osrmData";
+    return "BusBasicInfo: $licensePlate, $speed, $latitude, $longitude, $currentParsedLocation, $busStations, $trafficInfo, $orsData";
   }
 }
 

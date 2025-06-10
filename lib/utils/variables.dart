@@ -17,7 +17,7 @@ bus? 1.0
 
 Static and realtime data for rapidPenang, rapidKL and rapidPahang buses sourced from Prasarana's GTFS endpoints via data.gov.my which is used under CC BY 4.0.
                       
-Map data © OpenStreetMap Contributors. Retrieved via Nominatim. OSRM instance hosted by Project OSRM, which the project is under a BSD-2-Clause license.
+Map data © OpenStreetMap Contributors. Routing data © openrouteservice.org by HeiGIT. Geocoding data Retrieved via Nominatim.
                       
 Do note that data could be inaccurate for realtime data. Please check official sources, such as myRapid PULSE for accurate realtime data information.
 
@@ -62,7 +62,7 @@ String osmMessage(Place reverseSearchResult) {
 }
 
 String stationRemaining(double distance, double duration) {
-  return "${distance}m (${duration >= 60.0 ? "${(duration / 60).round()} minutes" : "< 1 minute"}) left to station";
+  return "${distance.toStringAsFixed(1)}m (${duration >= 60.0 ? "${(duration / 60).toStringAsFixed(0)} minutes" : "< 1 minute"}) left to station";
 }
 
 // tabs (global)

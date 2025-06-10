@@ -1,4 +1,5 @@
 import 'package:bus_mob/models/bus_basic_info.dart';
+import 'package:bus_mob/models/ors_data.dart';
 import 'package:bus_mob/models/osrm_data.dart';
 import 'package:bus_mob/utils/find_osrm_duration_and_distance.dart';
 import 'package:bus_mob/utils/get_nearest_stations.dart';
@@ -35,9 +36,9 @@ Future<BusBasicInfo> createData(FeedEntity bus, String route) async {
       route,
     );
   }
-  var osrmData = OsrmData();
+  var orsData = OrsData();
   if (nearest.currentStationLat != null && nearest.currentStationLon != null) {
-    osrmData = await getOsrmData(
+    orsData = await getOrsData(
       bus.vehicle.position.latitude,
       bus.vehicle.position.longitude,
       nearest.currentStationLat!,
@@ -52,6 +53,6 @@ Future<BusBasicInfo> createData(FeedEntity bus, String route) async {
     currentParsedLocation: cpl,
     busStations: nearest,
     trafficInfo: trafficText,
-    osrmData: osrmData,
+    orsData: orsData,
   );
 }

@@ -23,7 +23,7 @@ class DataCard extends StatelessWidget {
                   Expanded(
                     flex: 5,
                     child: Text(
-                      busInfo.licensePlate!,
+                      busInfo.licensePlate ?? "Unknown",
                       textAlign: TextAlign.left,
                       style: TextStyle(),
                     ),
@@ -35,9 +35,9 @@ class DataCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          busInfo.speed! == 0
+                          (busInfo.speed ?? 0) == 0
                               ? "Waiting"
-                              : "${busInfo.speed!.toDouble().toStringAsFixed(0)}km/h",
+                              : "${(busInfo.speed ?? 0).toDouble().toStringAsFixed(0)}km/h",
                           style: TextStyle(color: Colors.green),
                         ),
                       ],
@@ -50,9 +50,13 @@ class DataCard extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(16, 0, 16, 8),
               child: Column(
                 children:
-                    (busInfo.busStations!.currentStation! != "Unknown station")
+                    (busInfo.busStations?.currentStation != null &&
+                            busInfo.busStations?.currentStation !=
+                                "Unknown station")
                         ? [
-                          Text(busInfo.busStations!.previousStation!),
+                          Text(
+                            busInfo.busStations?.previousStation ?? "Unknown",
+                          ),
                           Padding(
                             padding: EdgeInsets.fromLTRB(0, 6, 0, 6),
                             child: Container(
@@ -70,7 +74,8 @@ class DataCard extends StatelessWidget {
                                       0,
                                     ),
                                     child: Text(
-                                      busInfo.busStations!.currentStation!,
+                                      busInfo.busStations?.currentStation ??
+                                          "Unknown",
                                       style: TextStyle(
                                         fontSize: 35,
                                         height: 1.2,
@@ -78,14 +83,14 @@ class DataCard extends StatelessWidget {
                                       textAlign: TextAlign.center,
                                     ),
                                   ),
-                                  if (busInfo.osrmData!.duration != -1.0 ||
-                                      busInfo.osrmData!.duration != -1.0)
+                                  if ((busInfo.orsData?.duration ?? -1.0) !=
+                                      -1.0)
                                     Padding(
                                       padding: EdgeInsets.fromLTRB(8, 0, 8, 8),
                                       child: Text(
                                         stationRemaining(
-                                          busInfo.osrmData!.distance!,
-                                          busInfo.osrmData!.duration!,
+                                          busInfo.orsData?.distance ?? 0.0,
+                                          busInfo.orsData?.duration ?? 0.0,
                                         ),
                                         style: TextStyle(height: 0),
                                         textAlign: TextAlign.center,
@@ -95,7 +100,7 @@ class DataCard extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Text(busInfo.busStations!.nextStation!),
+                          Text(busInfo.busStations?.nextStation ?? "Unknown"),
                         ]
                         : [],
               ),
@@ -121,18 +126,25 @@ class DataCard extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 7,
-                    child: Text(busInfo.currentParsedLocation!),
+                    child: Text(
+                      busInfo.currentParsedLocation ??
+                          "Failed to retrieve location",
+                    ),
                   ),
                   Expanded(flex: 1, child: Spacer()),
                   Expanded(
                     flex: 2,
                     child: ElevatedButton(
-                      onPressed: () {
-                        MapsLauncher.launchCoordinates(
-                          busInfo.latitude!,
-                          busInfo.longitude!,
-                        );
-                      },
+                      onPressed:
+                          (busInfo.latitude != null &&
+                                  busInfo.longitude != null)
+                              ? () {
+                                MapsLauncher.launchCoordinates(
+                                  busInfo.latitude!,
+                                  busInfo.longitude!,
+                                );
+                              }
+                              : null,
                       child: Icon(Icons.map),
                     ),
                   ),

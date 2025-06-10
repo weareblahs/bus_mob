@@ -10,7 +10,7 @@ Future<Arrivals?> createArrivalData(
   double stnLon,
   String route,
 ) async {
-  final data = await getOsrmData(
+  final data = await getOrsData(
     bus.vehicle.position.latitude,
     bus.vehicle.position.longitude,
     stnLat,

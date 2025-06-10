@@ -115,6 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _updateMsg,
     );
     if (mounted) {
+      print(busInfo);
       if (busInfo != null) {
         setState(() {
           info = busInfo;
@@ -124,8 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Future<void> setRoute(String provider, String route) async {
-    if (mounted) {
+  Future<void> setRoute(String? provider, String? route) async {
+    if (mounted && provider != null && route != null) {
       final busInfo = await generateGtfs(provider, route, _updateMsg);
       if (busInfo != null) {
         setState(() {
@@ -156,7 +157,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (providers.isNotEmpty)
                     DropdownMenu(
                       dropdownMenuEntries: providers,
-                      initialSelection: config.get("route"),
+                      initialSelection:
+                          config.get("route") ?? providers.first.value,
                       onSelected: (value) async {
                         config.put("route", value);
                         _refresh();
@@ -197,19 +199,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-            if (!isLoading)
+            if (!isLoading && info.isNotEmpty)
               Expanded(
-                child: SafeArea(
-                  top: false,
-                  maintainBottomViewPadding: false,
-                  child: Expanded(
-                    child: ListView.builder(
-                      padding: EdgeInsets.fromLTRB(6, 16, 6, 16),
-                      itemCount: info.length,
-                      itemBuilder:
-                          (context, index) => DataCard(busInfo: info[index]),
-                    ),
-                  ),
+                child: ListView.builder(
+                  padding: EdgeInsets.fromLTRB(6, 16, 6, 16),
+                  itemCount: info.length,
+                  itemBuilder:
+                      (context, index) => DataCard(busInfo: info[index]),
                 ),
               ),
           ],
